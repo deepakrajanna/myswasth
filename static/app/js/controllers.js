@@ -86,10 +86,9 @@ myswasthControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', '$h
 
 	console.log('../../api/visits/1/'+$routeParams.visitId);
 	
-	$http.get('../../api/visits/1/'+$routeParams.visitId).success(function(data) {
-		$scope.visits = data;
-	    $scope.visit = $scope.visits[$routeParams.visitId];
-    });
+	$http.get('../../api/visit/1/'+$routeParams.visitId).success(function(data) {
+		$scope.visit = data;
+	});
 }]);
 
 myswasthControllers.controller('VisitRecordCtrl', ['$scope','$http','FileUploader',
