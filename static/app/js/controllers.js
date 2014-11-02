@@ -67,8 +67,10 @@ myswasthControllers.controller('VisitCtrl', ['$scope', '$http','$rootScope',
   function ($scope, $http, $rootScope) {
     
     alert($rootScope.selected.id);
-
-    $http.get('../../api/visits/1').success(function(data) {
+    
+    var patient_id = 1;
+    
+    $http.get('../../api/visits/'+patient_id).success(function(data) {
       $scope.visits = data;
     });
     $scope.orderProp = 'date';
@@ -76,10 +78,18 @@ myswasthControllers.controller('VisitCtrl', ['$scope', '$http','$rootScope',
 
 myswasthControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', '$http',
    function ($scope, $routeParams, $http ) {
-	$http.get('data/visits.json').success(function(data) {
+	alert($routeParams.visitId);
+	/*$http.get('data/visits.json').success(function(data) {
 	      $scope.visits = data;
 	      $scope.visit = $scope.visits[$routeParams.visitId];
-	});
+	});*/
+
+	console.log('../../api/visits/1/'+$routeParams.visitId);
+	
+	$http.get('../../api/visits/1/'+$routeParams.visitId).success(function(data) {
+		$scope.visits = data;
+	    $scope.visit = $scope.visits[$routeParams.visitId];
+    });
 }]);
 
 myswasthControllers.controller('VisitRecordCtrl', ['$scope','$http','FileUploader',
