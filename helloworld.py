@@ -46,6 +46,14 @@ VISITS_JSON = """\
     }
 ]
 """
+VISIT_PATIENT_1 ="""{
+        "id": "3", 
+        "date":"25/08/2014",
+        "chiefComplaint":"Tooth Ache",
+        "prescriptionImageUrl":"",
+        "physicianName":"pn4"
+    } """
+VISIT_DETAIL_JSON = {"1":VISIT_PATIENT_1 }
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
@@ -56,7 +64,10 @@ class Visits(webapp2.RequestHandler):
     def get(self, patientid):
         self.response.write(VISITS_JSON)
 
-
+class Visit(webapp2.RequestHandler):
+    def get(self, patientid, visitid):
+        self.response.write(VISIT_DETAIL_JSON[str(visitid)])
+        
 class TestImageForm(webapp2.RequestHandler):
   def get(self):
     upload_url = blobstore.create_upload_url('/upload')
@@ -67,7 +78,7 @@ class TestImageForm(webapp2.RequestHandler):
 
 class UploadHandler(webapp2.RequestHandler):
   def post(self):
-    file = self.request.POST['file']
+    file = self.request.POST['file']                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
     self.response.out.write( "http://localhost:8080/images/something")
 
   def get(self):
@@ -84,5 +95,6 @@ application = webapp2.WSGIApplication([
     ('/testimage', TestImageForm),
     ('/upload', UploadHandler),
     ('/images/([^/]+)?', ServeHandler),
-    ('/api/visits/(.*)', Visits)
+    ('/api/visits/(.*)', Visits),
+    ('/api/visit/(.*)/(.*)',Visit)
 ], debug=True)
