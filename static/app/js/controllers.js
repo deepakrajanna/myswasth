@@ -1,4 +1,4 @@
-'use strict';
+  'use strict';
 
 
 /* Controllers */
@@ -13,8 +13,8 @@ myswasthControllers.controller('HomePageCtrl', ['$scope', '$http','$rootScope','
               { id : "cc1", name: "cc1-name" }
              ,{ id : "cc2", name: "cc2-name" }
              ,{ id : "cc3", name: "cc3-name" }
-             ,{ id : "cc4", name: "cc4name" }
-             ,{ id : "cc5", name: "cc5name" }
+             ,{ id : "cc4", name: "cc4-name" }
+             ,{ id : "cc5", name: "cc5-name" }
              ];
 
     $rootScope.open = function (size) {
@@ -63,31 +63,35 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
 };
 
 	
-myswasthControllers.controller('VisitCtrl', ['$scope', '$http','$rootScope',
-  function ($scope, $http, $rootScope) {
+myswasthControllers.controller('VisitCtrl', ['$scope', '$http','$rootScope','AllVisits',
+  function ($scope, $http, $rootScope,AllVisits) {
     
     alert($rootScope.selected.id);
     
     var patient_id = 1;
     
-    $http.get('../../api/visits/'+patient_id).success(function(data) {
-      $scope.visits = data;
-    });
+    var responseAllVisits = AllVisits.query({patientId: patient_id});
+    
+    responseAllVisits.$promise.then(function(data){
+	    var AllVisitData = angular.fromJson(angular.toJson(data)); 
+	    $scope.visits = AllVisitData;
+	});
+    
     $scope.orderProp = 'date';
 }]);
 
-myswasthControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', '$http',
-   function ($scope, $routeParams, $http ) {
-	alert($routeParams.visitId);
-	/*$http.get('data/visits.json').success(function(data) {
-	      $scope.visits = data;
-	      $scope.visit = $scope.visits[$routeParams.visitId];
-	});*/
-
-	console.log('../../api/visits/1/'+$routeParams.visitId);
+myswasthControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', '$http','Visit',
+   function ($scope, $routeParams, $http, Visit) {
 	
-	$http.get('../../api/visit/1/'+$routeParams.visitId).success(function(data) {
-		$scope.visit = data;
+	alert($routeParams.visitId);
+	
+	var visit_id = $routeParams.visitId;
+	
+	var responseVisit = Visit.query({visitId: visit_id});
+    
+    responseVisit.$promise.then(function(data){
+	    var VisitData = angular.fromJson(angular.toJson(data)); 
+	    $scope.visit = VisitData;
 	});
 }]);
 
@@ -95,20 +99,20 @@ myswasthControllers.controller('VisitRecordCtrl', ['$scope','$http','FileUploade
  function ($scope,$http,FileUploader) {
  	  $scope.VisitRecordForm = {};
 	  $scope.VisitRecordForm.vdate = "";
-    $scope.VisitRecordForm.name  = "";
-    $scope.VisitRecordForm.prescription  = "Prescription";
-    $scope.VisitRecordForm.chiefComplaints = [
+	  $scope.VisitRecordForm.name  = "";
+	  $scope.VisitRecordForm.prescription  = "Prescription";
+	  $scope.VisitRecordForm.chiefComplaints = [
               { id : "cc1", name: "cc1" }
              ,{ id : "cc2", name: "cc2" }
              ,{ id : "cc3", name: "cc3" }
              ,{ id : "cc4", name: "cc4" }
              ,{ id : "cc5", name: "cc5" }
              ];
-    $scope.VisitRecordForm.selected = undefined;
-    $scope.VisitRecordForm.states = ['cc1', 'cc2', 'cc3', 'cc4', 'cc5', 'cc6', 'cc7', 'cc8', 'cc9'];
+	  $scope.VisitRecordForm.selected = undefined;
+	  $scope.VisitRecordForm.states = ['cc1', 'cc2', 'cc3', 'cc4', 'cc5', 'cc6', 'cc7', 'cc8', 'cc9'];
     
 
-     var uploader = $scope.uploader = new FileUploader({
+	  var uploader = $scope.uploader = new FileUploader({
                 url: 'http://localhost:8080/upload',
                 autoUpload:true
             });

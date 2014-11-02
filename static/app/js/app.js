@@ -7,7 +7,8 @@ var myswasthApp = angular.module('myswasthApp', [
   'myswasthControllers',
   'ui.bootstrap',
   'googlechart',
-  'angularFileUpload'
+  'angularFileUpload',
+  'myswasthServices'
 ]);
 
 myswasthApp.config(['$routeProvider',
