@@ -40,7 +40,7 @@ VISITS_JSON = """\
     {
         "id": "3", 
         "date":"25/08/2014",
-        "chiefComplaint":"Tooth Ache",
+        "chiefComplaint":"Head Ache",
         "prescriptionImageUrl":"",
         "physicianName":"pn4"
     }
