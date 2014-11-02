@@ -1,0 +1,151 @@
+{
+    "diabetes": {
+        "name": "Diabetes",
+        "summary": {
+            "date_first_diagnosis": "30/3/2011",
+            "current_state": "Normal"
+        },
+        "chart": [
+            {
+                "title": "Total Cholesterol",
+                "series": [
+                    {
+                        "label": "Total Cholesterol",
+                        "values": {
+                            "value": [
+                                {
+                                    "date": "30/3/2011",
+                                    "reading": "240"
+                                },
+                                {
+                                    "date": "30/5/2011",
+                                    "reading": "240"
+                                },
+                                {
+                                    "date": "30/6/2012",
+                                    "reading": "240"
+                                },
+                                {
+                                    "date": "30/8/2012",
+                                    "reading": "240"
+                                },
+                                {
+                                    "date": "3/4/2013",
+                                    "reading": "240"
+                                },
+                                {
+                                    "date": "23/7/2013",
+                                    "reading": "240"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "label": "Normal",
+                        "values": {
+                            "value": [
+                                {
+                                    "date": "30/3/2011",
+                                    "reading": "200"
+                                },
+                                {
+                                    "date": "30/5/2011",
+                                    "reading": "200"
+                                },
+                                {
+                                    "date": "30/6/2012",
+                                    "reading": "200"
+                                },
+                                {
+                                    "date": "30/8/2012",
+                                    "reading": "200"
+                                },
+                                {
+                                    "date": "3/4/2013",
+                                    "reading": "200"
+                                },
+                                {
+                                    "date": "23/7/2013",
+                                    "reading": "200"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "title": "Total Cholesterol",
+                "series": [
+                    {
+                        "label": "Total Cholesterol",
+                        "values": {
+                            "value": [
+                                {
+                                    "date": "30/3/2011",
+                                    "reading": "240"
+                                },
+                                {
+                                    "date": "30/5/2011",
+                                    "reading": "240"
+                                },
+                                {
+                                    "date": "30/6/2012",
+                                    "reading": "240"
+                                },
+                                {
+                                    "date": "30/8/2012",
+                                    "reading": "240"
+                                },
+                                {
+                                    "date": "3/4/2013",
+                                    "reading": "240"
+                                },
+                                {
+                                    "date": "23/7/2013",
+                                    "reading": "240"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "label": "Normal",
+                        "values": {
+                            "value": [
+                                {
+                                    "date": "30/3/2011",
+                                    "reading": "200"
+                                },
+                                {
+                                    "date": "30/5/2011",
+                                    "reading": "200"
+                                },
+                                {
+                                    "date": "30/6/2012",
+                                    "reading": "200"
+                                },
+                                {
+                                    "date": "30/8/2012",
+                                    "reading": "200"
+                                },
+                                {
+                                    "date": "3/4/2013",
+                                    "reading": "200"
+                                },
+                                {
+                                    "date": "23/7/2013",
+                                    "reading": "200"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        ],
+        "recommendations": {
+            "recommendation": [
+                "Exercise regularly",
+                "Reduce fats in your diet"
+            ]
+        }
+    }
+}

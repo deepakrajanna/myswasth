@@ -1,0 +1,54 @@
+<div class="col-xs-12 col-sm-12">
+	</br>
+	<ul class="list-group">
+	  <li class="list-group-item" >
+	    <div class="row">
+		  <div class="col-xs-12 col-sm-12">
+		  	<div class="col-xs-5 col-sm-5">
+				No. of Visits:
+			</div>
+		    <div class="col-xs-5 col-sm-5">
+				{{historyData.history.summary.num_visits}}
+			</div>
+		  </div>	
+		</div>
+	  </li>
+	</ul>
+	Common Complaints : </br>
+	<ul class="list-group">
+	   <li class="list-group-item" ng-repeat="value in historyData.history.summary.common_complaints.complaint">
+	    <div class="row">
+		  <div class="col-xs-12 col-sm-12">
+		  	<div class="col-xs-10 col-sm-10">
+				{{value}}
+			</div>
+		  </div>	
+		</div>
+	  </li> 
+	</ul>
+	Cases :
+	<select ng-model="case" ng-options="case.code as case.name for case in historyData.history.cases.case" class="form-control">
+			  </select>
+	
+
+	</br>		  
+	<div ng-if="case">
+		<div class="form-group" ng-repeat="chart in chart[case].chart">
+			<div google-chart chart="chart" style="height:200px; width:100%;"/>   
+		</div>
+	</div>
+	<div ng-if="case">
+		Recommendations : </br>
+		<ul class="list-group">
+		   <li class="list-group-item" ng-repeat="reco in chart[case].recommendations.recommendation">
+		    <div class="row">
+			  <div class="col-xs-12 col-sm-12">
+			  	<div class="col-xs-10 col-sm-10">
+					{{reco}}
+				</div>
+			  </div>	
+			</div>
+		  </li> 
+		</ul>
+	</div>
+</div>

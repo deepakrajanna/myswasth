@@ -1,0 +1,19 @@
+[
+  {
+    "code": "bp",
+    "name": "BP"
+  },
+  {
+    "code": "diabetes",
+    "name": "Diabetes"
+  },
+  {
+    "code": "lipid_profile",
+    "name": "Lipid Profile"
+  },
+  {
+    "code": "anaemia",
+    "name": "Anaemia"
+  }
+]
+  

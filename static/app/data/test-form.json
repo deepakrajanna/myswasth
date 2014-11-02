@@ -1,0 +1,119 @@
+{
+  "bp":{
+    "code": "bp",
+    "name": "BP",
+    "description": "Description of BP",
+    "value": [
+      {
+        "name": "Systolic",
+        "type": "Integer",
+        "validation": {
+          "min": "50",
+          "max": "300"
+        }
+      },
+      {
+        "name": "Diastolic",
+        "type": "Integer",
+        "validation": {
+          "min": "50",
+          "max": "300"
+        }
+      }
+    ]
+  },
+  "diabetes":{
+    "code": "diabetes",
+    "name": "Diabetes",
+    "description": "Description of Diabetes ",
+    "value": [
+      {
+        "name": "HbA1C",
+        "type": "Integer",
+        "unit": "%",
+        "validation": {
+          "min": "0",
+          "max": "100"
+        }
+      },
+      {
+        "name": "Fasting Sugar",
+        "type": "Integer",
+        "unit": "mg/dl",
+        "validation": {
+          "min": "10",
+          "max": "200"
+        }
+      },
+      {
+        "name": "Post-prandial Sugar",
+        "type": "Integer",
+        "unit": "mg/dl",
+        "validation": {
+          "min": "10",
+          "max": "200"
+        }
+      }
+    ]
+  },
+  "lipid_profile":{
+    "code": "lipid_profile",
+    "name": "Lipid Profile",
+    "description": "Discription of Lipid Profile ",
+    "value": [
+      {
+        "name": "LDL",
+        "type": "Integer",
+        "unit": "%",
+        "validation": {
+          "min": "0",
+          "max": "100"
+        }
+      },
+      {
+        "name": "HDL",
+        "type": "Integer",
+        "unit": "mg/dl",
+        "validation": {
+          "min": "10",
+          "max": "200"
+        }
+      },
+      {
+        "name": "Triglycerides",
+        "type": "Integer",
+        "unit": "mg/dl",
+        "validation": {
+          "min": "10",
+          "max": "200"
+        }
+      },
+      {
+        "name": "Total Cholesterol",
+        "type": "Integer",
+        "unit": "mg/dl",
+        "validation": {
+          "min": "10",
+          "max": "200"
+        }
+      }
+    ]
+  },
+  "anaemia":{
+    "code": "anaemia",
+    "name": "Anaemia",
+    "description": "Description of Anaemia",
+    "value": [
+	    {
+	      "name": "Haemoglobin",
+	      "type": "Integer",
+	      "unit": "g/dl",
+	      "validation": {
+	        "min": "2",
+	        "max": "20"
+	      }
+	    }
+      ]
+  }
+}
+  

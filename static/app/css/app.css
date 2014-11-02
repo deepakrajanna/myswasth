@@ -1,0 +1,27 @@
+#header{
+	background-color:#107eae;
+	text-align: center;
+}
+
+
+#homepage-icons{
+	background-color:#f1f1f1;
+	text-align: center;
+}
+
+#footer{
+	background-color:#107eae;
+	text-align: center;
+	position: fixed;
+    bottom: 0;
+}
+
+#search-btn{
+	color:white;
+	font-size:35px;
+	padding:10px;
+}
+
+#help-test-form{
+	font-size:20px;
+}

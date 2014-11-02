@@ -1,0 +1,53 @@
+<div class="col-xs-12 col-sm-12">
+	</br>
+	<ul class="list-group">
+	  <li class="list-group-item" >
+	    <div class="row">
+		  <div class="col-xs-12 col-sm-12">
+		  	<div class="col-xs-5 col-sm-5">
+				Date:
+			</div>
+		    <div class="col-xs-5 col-sm-5">
+				{{visit.date}}
+			</div>
+		  </div>	
+		</div>
+	  </li>
+	  <li class="list-group-item" >
+	    <div class="row">
+		  <div class="col-xs-12 col-sm-12">
+		  	<div class="col-xs-5 col-sm-5">
+				Chief Complaint:
+			</div>
+		    <div class="col-xs-5 col-sm-5">
+				{{visit.chiefComplaint}}
+			</div>
+		  </div>	
+		</div>
+	  </li>
+	  <li class="list-group-item" >
+	    <div class="row">
+		  <div class="col-xs-12 col-sm-12">
+		  	<div class="col-xs-5 col-sm-5">
+				Prescription:
+			</div>
+		    <div class="col-xs-5 col-sm-5">
+				<img ng-src="{{visit.prescriptionImageUrl}}" style="width:100%;" />
+			</div>
+		  </div>	
+		</div>
+	  </li>
+	  <li class="list-group-item" >
+	    <div class="row">
+		  <div class="col-xs-12 col-sm-12">
+		  	<div class="col-xs-5 col-sm-5">
+				Physician's Name:
+			</div>
+		    <div class="col-xs-5 col-sm-5">
+				{{visit.physicianName}}
+			</div>
+		  </div>	
+		</div>
+	  </li>
+	</ul>
+</div>

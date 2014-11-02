@@ -1,0 +1,57 @@
+<!-- Page Starts -->
+<div class="col-xs-12 col-sm-12" id="homepage-icons">
+  </br>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+	  	<div class="col-xs-6 col-sm-6">
+		  <a href="#/visit"><img ng-src="{{homeicons[3].imageUrl}}" alt="Record Visit" width="90%;"></a>
+	    </div>
+	    <div class="col-xs-6 col-sm-6">
+		  <a href="#/test"><img ng-src="{{homeicons[2].imageUrl}}" alt="Record Test" width="90%;"/></a>
+	    </div>
+    </div>	
+  </div>
+  </br>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+	  	<div class="col-xs-6 col-sm-6">
+		  <a href="#/history"><img ng-src="{{homeicons[0].imageUrl}}" alt="History" width="90%;"/></a>
+	    </div>
+	    <div class="col-xs-6 col-sm-6">
+		  <a href="#/profile"><img ng-src="{{homeicons[1].imageUrl}}" alt="Profile" width="90%;"/></a>
+	    </div>
+    </div>	
+  </div>
+  </br>
+  <div class="row">
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">I am a modal!</h3>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="item in items">
+                    <a ng-click="selected.item = item">{{item.id}}</a>
+                </li>
+            </ul>
+            Patient Name: <b>{{ selected.item.name }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok(selected.item.name)">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <button class="btn btn-default" ng-click="open()">Open me!</button>
+    <div ng-show="selected">Patient Name: {{ selected.name }}</div>
+</div>
+</br>
+</div>
+<!-- Page Ends -->
+
+<!-- Footer Starts -->
+  <div class="col-xs-12 col-sm-12" id="footer">
+	<span class="glyphicon glyphicon-search" id="search-btn"></span>
+  </div> 
+<!-- Footer Ends -->
+

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" ng-app="myswasthApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MySwasth</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/app.css">
+
+  <script src="bower_components/es5-shim/es5-shim.min.js"></script>
+  <script src="bower_components/es5-shim/es5-sham.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script src="js/console-sham.js"></script>
+
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="http://bouil.github.io/angular-google-chart/ng-google-chart.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/directives.js"></script>
+  <style>
+    .my-drop-zone { border: dotted 3px lightgray; }
+    .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+    .another-file-over-class { border: dotted 3px green; }
+
+    canvas {
+        background-color: #f3f3f3;
+        -webkit-box-shadow: 3px 3px 3px 0 #e3e3e3;
+        -moz-box-shadow: 3px 3px 3px 0 #e3e3e3;
+        box-shadow: 3px 3px 3px 0 #e3e3e3;
+        border: 1px solid #c3c3c3;
+        height: 100px;
+        margin: 6px 0 0 6px;
+    }
+</style>
+</head>
+<body style="background-color:#f1f1f1;">
+  
+  <!-- Header Starts-->
+  <div class="col-xs-12 col-sm-12" id="header">
+    <a href="#"><img src="img/homeicons/logo.png" alt="Header Logo" width="70%;" /></a>
+  </div> 
+  <!-- Header Ends -->
+  
+  <div ng-view ></div>
+  
+  
+  
+
+</body>
+</html>

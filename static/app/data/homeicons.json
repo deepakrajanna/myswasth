@@ -1,0 +1,22 @@
+[
+    {
+        "id": "history", 
+        "imageUrl": "img/homeicons/history.png", 
+        "name": "History"
+    }, 
+    {
+        "id": "profile", 
+        "imageUrl": "img/homeicons/profile.png", 
+        "name": "Profile"
+    },
+    {
+        "id": "test", 
+        "imageUrl": "img/homeicons/test.png", 
+        "name": "Test"
+    }, 
+    {
+        "id": "visit", 
+        "imageUrl": "img/homeicons/visit.png", 
+        "name": "Visit"
+    }
+]

@@ -1,0 +1,81 @@
+{
+    "diabetes": {
+        "name": "Diabetes",
+        "summary": {
+            "date_first_diagnosis": "30/3/2011",
+            "current_state": "Normal"
+        },
+        "chart": [
+            {
+                "type": "ComboChart",
+                "data": {
+                    "cols": [
+                        {"id": "date", "label": "Date", "type": "date"},
+                        {"id": "reading", "label": "Reading", "type": "number"},
+                        {"id": "normal", "label": "Normal", "type": "number"}
+                    ], 
+                    "rows": [
+                        {
+                            "c": [
+                                {"v": "Date(2012,03,01)"},
+                                {"v": 0},
+                                {"v": 19}
+                            ]
+                        },
+                        {
+                            "c": [
+                                {"v": "Date(2012,04,2)"},
+                                {"v": 19},
+                                {"v": 19}
+                            ]
+                        },
+                        {
+                            "c": [
+                                {"v": "Date(2012,05,2)"},
+                                {"v": 13},
+                                {"v": 19}
+                            ]
+                        },
+                        {
+                            "c": [
+                                {"v": "Date(2012,09,2)"},
+                                {"v": 24},
+                                {"v": 19}
+                            ]
+                        }
+                    ]
+                },
+                "options": {
+                    "title":"Total Cholesterol",
+                    "isStacked": "false",
+                    "fill": 10,
+                    "displayExactValues": true,
+                    "vAxis": {
+                        "title": "Reading"
+                    },
+                    "hAxis": {
+                        "title": "Date",
+                        "format": "dd MMM yyyy"
+                    },
+                    "seriesType": "bars",
+                    "series": {
+                        "1": {
+                            "type": "line","color":"green"
+                        }
+                    },
+                    "bar": {
+                        "groupWidth": "10"
+                     }
+                },
+                "formatters":""
+            }
+            
+        ],
+        "recommendations": {
+            "recommendation": [
+                "Exercise regularly",
+                "Reduce fats in your diet"
+            ]
+        }
+    }
+}

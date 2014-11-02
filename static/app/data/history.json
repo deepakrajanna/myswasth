@@ -1,0 +1,26 @@
+{
+    "history": {
+        "summary": {
+            "num_visits": "5",
+            "common_complaints": {
+                "complaint": [
+                    "Cold",
+                    "Body Ache",
+                    "Tooth Ache"
+                ]
+            }
+        },
+        "cases": {
+            "case": [
+                {
+                    "code": "diabetes",
+                    "name": "Diabetes"
+                },
+                {
+                    "code": "bp",
+                    "name": "BP"
+                }
+            ]
+        }
+    }
+}
