@@ -1,0 +1,1 @@
+var myswasthControllers = angular.module('myswasthControllers', []);
