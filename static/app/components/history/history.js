@@ -2,7 +2,6 @@ var historyApp = angular.module('historyApp', [
   'ngRoute',
   'historyControllers',
   'ui.bootstrap',
-  'googlechart',
   'angularFileUpload'
 ]);
 

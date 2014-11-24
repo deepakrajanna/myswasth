@@ -2,7 +2,6 @@ var homeApp = angular.module('homeApp', [
   'ngRoute',
   'homeControllers',
   'ui.bootstrap',
-  'googlechart',
   'angularFileUpload'
 ]);
 

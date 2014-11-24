@@ -27,17 +27,13 @@
 	  </li> 
 	</ul>
 	Cases :
-	<select ng-model="case" ng-options="case.code as case.name for case in historyData.history.cases.case" class="form-control">
-			  </select>
-	
-
+	<select ng-model="case" ng-options="case.code as case.name for case in historyData.history.cases.case" class="form-control"></select>
 	</br>		  
 	<div ng-if="case">
-		<div class="form-group" ng-repeat="chart in chart[case].chart">
-			<div google-chart chart="chart" style="height:200px; width:100%;"/>   
+		<div class="form-group">
+			<div id="history-chart"></div>
+			<span ng-show="init()"/>
 		</div>
-	</div>
-	<div ng-if="case">
 		Recommendations : </br>
 		<ul class="list-group">
 		   <li class="list-group-item" ng-repeat="reco in chart[case].recommendations.recommendation">

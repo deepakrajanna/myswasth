@@ -2,7 +2,6 @@ var testApp = angular.module('testApp', [
   'ngRoute',
   'testControllers',
   'ui.bootstrap',
-  'googlechart',
   'angularFileUpload'
 ]);
 

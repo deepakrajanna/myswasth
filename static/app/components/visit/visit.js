@@ -2,7 +2,6 @@ var visitApp = angular.module('visitApp', [
   'ngRoute',
   'visitControllers',
   'ui.bootstrap',
-  'googlechart',
   'angularFileUpload',
   'visitServices'
 ]);
