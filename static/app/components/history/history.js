@@ -12,7 +12,7 @@ historyApp.config(['$routeProvider',
 	function($routeProvider) {
 	  $routeProvider.
 	    when('/history', {
-	      templateUrl: '/static/app/components/history/partials/history.html',
+	      templateUrl: 'components/history/partials/history.html',
 	      controller: 'HistoryCtrl'
 	    });
 	}]);

@@ -16,19 +16,19 @@ visitApp.config(['$routeProvider',
     $routeProvider.
       
       when('/visit', {
-        templateUrl: '/static/app/components/visit/partials/visit.html',
+        templateUrl: 'components/visit/partials/visit.html',
         controller: 'VisitCtrl'
       }).
       when('/visit/id/:visitId', {
-          templateUrl: '/static/app/components/visit/partials/visit-detail.html',
+          templateUrl: 'components/visit/partials/visit-detail.html',
           controller: 'VisitDetailCtrl'
         }).
       when('/visit/record', {
-          templateUrl: '/static/app/components/visit/partials/visit-record.html',
+          templateUrl: 'components/visit/partials/visit-record.html',
           controller: 'VisitRecordCtrl'
         }).
       when('/visit/record-test', {
-          templateUrl: '/static/app/components/visit/partials/visit-record-test.html',
+          templateUrl: 'components/visit/partials/visit-record-test.html',
           controller: 'VisitRecordTestCtrl'
         }).
      otherwise({

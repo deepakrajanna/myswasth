@@ -1,22 +1,22 @@
 [
     {
         "id": "history", 
-        "imageUrl": "/static/assets/img/homeicons/history.png", 
+        "imageUrl": "../assets/img/homeicons/history.png", 
         "name": "History"
     }, 
     {
         "id": "profile", 
-        "imageUrl": "/static/assets/img/homeicons/profile.png", 
+        "imageUrl": "../assets/img/homeicons/profile.png", 
         "name": "Profile"
     },
     {
         "id": "test", 
-        "imageUrl": "/static/assets/img/homeicons/test.png", 
+        "imageUrl": "../assets/img/homeicons/test.png", 
         "name": "Test"
     }, 
     {
         "id": "visit", 
-        "imageUrl": "/static/assets/img/homeicons/visit.png", 
+        "imageUrl": "../assets/img/homeicons/visit.png", 
         "name": "Visit"
     }
 ]
