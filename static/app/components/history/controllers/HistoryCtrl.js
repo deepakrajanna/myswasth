@@ -8,7 +8,8 @@ historyControllers.controller('HistoryCtrl', ['$scope', '$http',
        $scope.chart = data;
      });
      
-     $scope.init = function(){
+     $scope.init = function(x){
+    	 alert(x);
     	 var chart = c3.generate({
     	    	bindto: '#history-chart',
     		    data: {

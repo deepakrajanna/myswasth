@@ -2,11 +2,12 @@ var homeApp = angular.module('homeApp', [
   'ngRoute',
   'homeControllers',
   'ui.bootstrap',
-  'angularFileUpload'
+  'angularFileUpload',
+  'homeServices'
 ]);
 
 var homeControllers = angular.module('homeControllers', []);
-
+var homeServices = angular.module('homeServices', ['ngResource']);
 
 homeApp.config(['$routeProvider',
   function($routeProvider) {

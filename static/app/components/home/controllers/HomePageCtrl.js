@@ -1,7 +1,7 @@
 
 
-homeControllers.controller('HomePageCtrl', ['$scope', '$http','$rootScope','$modal','$log',
-  function ($scope, $http, $rootScope, $modal, $log) {
+homeControllers.controller('HomePageCtrl', ['$scope', '$http','$rootScope','$modal','$log','AllPatientIds',
+  function ($scope, $http, $rootScope, $modal, $log, AllPatientIds) {
 
     $rootScope.selected = { id : "cc1", name: "cc1-name" };
     $rootScope.items = [
@@ -11,7 +11,15 @@ homeControllers.controller('HomePageCtrl', ['$scope', '$http','$rootScope','$mod
              ,{ id : "cc4", name: "cc4-name" }
              ,{ id : "cc5", name: "cc5-name" }
              ];
-
+    /*
+    var patientIds = AllPatientIds.query({visitId: visit_id});
+    
+    patientIds.$promise.then(function(data){
+	    var patientIdsData = angular.fromJson(angular.toJson(data)); 
+	    $rootScope.items = patientIdsData;
+	});
+    */
+    
     $rootScope.open = function (size) {
 
     var modalInstance = $modal.open({
