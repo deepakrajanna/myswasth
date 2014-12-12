@@ -1,10 +1,43 @@
 import cgi
 import webapp2
 import urllib
+import os
 
+from oauth2client import appengine
+from oauth2client import client
 
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
+
+import jinja2
+
+
+JINJA_ENVIRONMENT = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+    autoescape=True,
+    extensions=['jinja2.ext.autoescape'])
+
+# CLIENT_SECRETS, name of a file containing the OAuth 2.0 information for this
+# application, including client_id and client_secret, which are found
+# on the API Access tab on the Google APIs
+# Console <http://code.google.com/apis/console>
+CLIENT_SECRETS = os.path.join(os.path.dirname(__file__), 'client_secret.json')
+
+# Helpful message to display in the browser if the CLIENT_SECRETS file
+# is missing.
+MISSING_CLIENT_SECRETS_MESSAGE = """
+<h1>Warning: Please configure OAuth 2.0</h1>
+<p>
+To make this sample run you will need to populate the client_secrets.json file
+found at:
+</p>
+<p>
+<code>%s</code>.
+</p>
+<p>with information found on the <a
+href="https://code.google.com/apis/console">APIs Console</a>.
+</p>
+""" % CLIENT_SECRETS
 
 MAIN_PAGE_HTML = """\
 <html>
@@ -13,7 +46,12 @@ MAIN_PAGE_HTML = """\
   </body>
 </html>
 """
-
+PATIENT_DETAILS="""\
+{
+    "id":"1",
+    "name":"Deepak"
+}
+"""
 VISITS_JSON = """\
 [
     {
@@ -55,19 +93,45 @@ VISIT_PATIENT_1 ="""{
     } """
 VISIT_DETAIL_JSON = {"1":VISIT_PATIENT_1 }
 
+
+decorator = appengine.oauth2decorator_from_clientsecrets(
+    CLIENT_SECRETS,
+    scope='https://www.googleapis.com/auth/plus.me',
+    message=MISSING_CLIENT_SECRETS_MESSAGE)
+
 class MainPage(webapp2.RequestHandler):
+    @decorator.oauth_required
     def get(self):
         print "debug"
         self.response.write(MAIN_PAGE_HTML)
 
+class AboutHandler(webapp2.RequestHandler):
+
+  @decorator.oauth_required
+  def get(self):
+    try:
+      http = decorator.http()
+      user = service.people().get(userId='me').execute(http=http)
+      text = 'Hello, %s!' % user['displayName']
+
+      template = JINJA_ENVIRONMENT.get_template('welcome.html')
+      self.response.write(template.render({'text': text }))
+    except client.AccessTokenRefreshError:
+      self.redirect('/')
+      
 class Visits(webapp2.RequestHandler):
+    @decorator.oauth_required
     def get(self, patientid):
         self.response.write(VISITS_JSON)
 
 class Visit(webapp2.RequestHandler):
     def get(self, patientid, visitid):
         self.response.write(VISIT_DETAIL_JSON[str(visitid)])
-        
+
+class Patient(webapp2.RequestHandler):
+    def get(self):
+        self.response.write(PATIENT_DETAILS)
+         
 class TestImageForm(webapp2.RequestHandler):
   def get(self):
     upload_url = blobstore.create_upload_url('/upload')
@@ -96,5 +160,7 @@ application = webapp2.WSGIApplication([
     ('/upload', UploadHandler),
     ('/images/([^/]+)?', ServeHandler),
     ('/api/visits/(.*)', Visits),
-    ('/api/visit/(.*)/(.*)',Visit)
+    ('/api/visit/(.*)/(.*)',Visit),
+    ('/api/get_patient_id',Patient),
+    (decorator.callback_path, decorator.callback_handler()),
 ], debug=True)
