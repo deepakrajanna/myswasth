@@ -52,6 +52,16 @@ PATIENT_DETAILS="""\
     "name":"Deepak"
 }
 """
+
+PATIENT_FAMILY_MEMBER_LIST="""\
+            [
+              { id : "1", name: "Deepak" }
+             ,{ id : "2", name: "Manjari" }
+             ,{ id : "3", name: "Shekhar" }
+             ,{ id : "4", name: "Anant" }
+             ,{ id : "5", name: "Shruti" }
+             ]
+"""
 VISITS_JSON = """\
 [
     {
@@ -131,7 +141,11 @@ class Visit(webapp2.RequestHandler):
 class Patient(webapp2.RequestHandler):
     def get(self):
         self.response.write(PATIENT_DETAILS)
-         
+
+class Family(webapp2.RequestHandler):
+    def get(self, patient_id):
+        self.response.write(PATIENT_FAMILY_MEMBER_LIST)
+
 class TestImageForm(webapp2.RequestHandler):
   def get(self):
     upload_url = blobstore.create_upload_url('/upload')
@@ -162,5 +176,6 @@ application = webapp2.WSGIApplication([
     ('/api/visits/(.*)', Visits),
     ('/api/visit/(.*)/(.*)',Visit),
     ('/api/get_patient_id',Patient),
+    ('/api/get_family_members/(.*)',Family),
     (decorator.callback_path, decorator.callback_handler()),
 ], debug=True)
