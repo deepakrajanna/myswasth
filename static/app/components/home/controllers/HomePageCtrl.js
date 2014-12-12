@@ -1,6 +1,6 @@
 
 
-homeControllers.controller('HomePageCtrl', ['$scope', '$http','$rootScope','$modal','$log','AllPatientIds','getPatientId'
+homeControllers.controller('HomePageCtrl', ['$scope', '$http','$rootScope','$modal','$log','AllPatientIds','getPatientId',
   function ($scope, $http, $rootScope, $modal, $log, AllPatientIds, getPatientId) {
 
     //$rootScope.selected = { id : "1", name: "Deepak" };
