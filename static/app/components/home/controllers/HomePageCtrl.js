@@ -1,9 +1,17 @@
 
 
-homeControllers.controller('HomePageCtrl', ['$scope', '$http','$rootScope','$modal','$log','AllPatientIds',
-  function ($scope, $http, $rootScope, $modal, $log, AllPatientIds) {
+homeControllers.controller('HomePageCtrl', ['$scope', '$http','$rootScope','$modal','$log','AllPatientIds','getPatientId'
+  function ($scope, $http, $rootScope, $modal, $log, AllPatientIds, getPatientId) {
 
-    $rootScope.selected = { id : "1", name: "Deepak" };
+    //$rootScope.selected = { id : "1", name: "Deepak" };
+    
+    var patientId = getPatientId.query();
+    
+    patientId.$promise.then(function(data){
+	    var patientIdData = angular.fromJson(angular.toJson(data)); 
+	    $rootScope.selected = patientIdData;
+	});
+    
     $rootScope.items = [
               { id : "1", name: "Deepak" }
              ,{ id : "2", name: "Manjari" }
