@@ -6,7 +6,6 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
   };
 
   $scope.ok = function (name) {
-    alert(name);
     $modalInstance.close($scope.selected.item);
   };
 

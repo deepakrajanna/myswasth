@@ -1,3 +1,20 @@
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Please select a patient.</h3>
+    </div>
+    <div class="modal-body">
+        <ul>
+            <li ng-repeat="item in items">
+                <a ng-click="selected.item = item">{{item.name}}</a>
+            </li>
+        </ul>
+        Selected Patient Name: <b>{{ selected.item.name }}</b>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok(selected.item.name)">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
 <!-- Page Starts -->
 <div class="col-xs-12 col-sm-12" id="homepage-icons">
   </br>
@@ -25,9 +42,9 @@
   </br>
   <div class="row">
     
-
-    <button class="btn btn-default" ng-click="open()">Open me!</button>
-    <div ng-show="selected">Patient Name: {{ selected.name }}</div>
+	<div ng-show="selected"><h4>Patient Name: {{ selected.name }}</h2></div>
+    <button class="btn btn-default" ng-click="open()">Change Patient</button>
+    
 </div>
 </br>
 </div>

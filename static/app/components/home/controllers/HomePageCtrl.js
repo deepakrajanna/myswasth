@@ -3,13 +3,13 @@
 homeControllers.controller('HomePageCtrl', ['$scope', '$http','$rootScope','$modal','$log','AllPatientIds',
   function ($scope, $http, $rootScope, $modal, $log, AllPatientIds) {
 
-    $rootScope.selected = { id : "cc1", name: "cc1-name" };
+    $rootScope.selected = { id : "1", name: "Deepak" };
     $rootScope.items = [
-              { id : "cc1", name: "cc1-name" }
-             ,{ id : "cc2", name: "cc2-name" }
-             ,{ id : "cc3", name: "cc3-name" }
-             ,{ id : "cc4", name: "cc4-name" }
-             ,{ id : "cc5", name: "cc5-name" }
+              { id : "1", name: "Deepak" }
+             ,{ id : "2", name: "Manjari" }
+             ,{ id : "3", name: "Shekhar" }
+             ,{ id : "4", name: "Anant" }
+             ,{ id : "5", name: "Shruti" }
              ];
     /*
     var patientIds = AllPatientIds.query({visitId: visit_id});
