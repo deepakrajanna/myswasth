@@ -3,8 +3,6 @@
 homeControllers.controller('HomePageCtrl', ['$scope', '$http','$rootScope','$modal','$log','AllPatientIds','getPatientId',
   function ($scope, $http, $rootScope, $modal, $log, AllPatientIds, getPatientId) {
 
-    //$rootScope.selected = { id : "1", name: "Deepak" };
-    
     var patientId = getPatientId.query();
     
     patientId.$promise.then(function(data){
@@ -12,21 +10,23 @@ homeControllers.controller('HomePageCtrl', ['$scope', '$http','$rootScope','$mod
 	    $rootScope.selected = patientIdData;
 	});
     
-    $rootScope.items = [
+    /*$rootScope.items = [
               { id : "1", name: "Deepak" }
              ,{ id : "2", name: "Manjari" }
              ,{ id : "3", name: "Shekhar" }
              ,{ id : "4", name: "Anant" }
              ,{ id : "5", name: "Shruti" }
              ];
-    /*
-    var patientIds = AllPatientIds.query({visitId: visit_id});
+    */
+    var patient_id = $rootScope.selected.id;
+    
+    var patientIds = AllPatientIds.query({patientId: patient_id});
     
     patientIds.$promise.then(function(data){
 	    var patientIdsData = angular.fromJson(angular.toJson(data)); 
 	    $rootScope.items = patientIdsData;
 	});
-    */
+    
     
     $rootScope.open = function (size) {
 
