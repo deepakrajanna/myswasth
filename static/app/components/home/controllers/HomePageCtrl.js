@@ -1,34 +1,17 @@
 
 
-homeControllers.controller('HomePageCtrl', ['$scope', '$http','$rootScope','$modal','$log','AllPatientIds','getPatientId',
-  function ($scope, $http, $rootScope, $modal, $log, AllPatientIds, getPatientId) {
-
-    var patientId = getPatientId.query();
+homeControllers.controller('HomePageCtrl', ['$scope', '$http','$rootScope','$modal','$log','AllPatientIds','getPatientId','getHomeIcons',
+  function ($scope, $http, $rootScope, $modal, $log, AllPatientIds, getPatientId, getHomeIcons) {
+	
+	getPatientId.query(function(data) {
+    	$rootScope.selected = data;
+    	
+    	AllPatientIds.query({ patientId: $rootScope.selected.id }, function(data) {
+        	$rootScope.items = data;
+        });
+    });
     
-    patientId.$promise.then(function(data){
-	    var patientIdData = angular.fromJson(angular.toJson(data)); 
-	    $rootScope.selected = patientIdData;
-	});
-    
-    /*$rootScope.items = [
-              { id : "1", name: "Deepak" }
-             ,{ id : "2", name: "Manjari" }
-             ,{ id : "3", name: "Shekhar" }
-             ,{ id : "4", name: "Anant" }
-             ,{ id : "5", name: "Shruti" }
-             ];
-    */
-    var patient_id = $rootScope.selected.id;
-    
-    var patientIds = AllPatientIds.query({patientId: patient_id});
-    
-    patientIds.$promise.then(function(data){
-	    var patientIdsData = angular.fromJson(angular.toJson(data)); 
-	    $rootScope.items = patientIdsData;
-	});
-    
-    
-    $rootScope.open = function (size) {
+	$rootScope.open = function (size) {
 
     var modalInstance = $modal.open({
       templateUrl: 'myModalContent.html',
@@ -48,11 +31,10 @@ homeControllers.controller('HomePageCtrl', ['$scope', '$http','$rootScope','$mod
     });
   };
 
-    
-
-    $http.get('data/homeicons.json').success(function(data) {
-      $scope.homeicons = data;
-    });
+  	getHomeIcons.query(function(data) {
+  		$scope.homeicons = data;
+	 });
+   
 }]);
 
 
