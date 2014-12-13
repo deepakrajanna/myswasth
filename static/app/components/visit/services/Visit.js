@@ -2,7 +2,7 @@
 
 visitServices.factory('Visit', ['$resource',
    function($resource){
-     return $resource('../../api/visit/1/:visitId', {}, {
-       query: {method:'GET', params:{visitId:'@visitId'}}
+     return $resource('../../api/visit/:patientId/:visitId', {}, {
+       query: {method:'GET', params:{ patientId:'@patientId', visitId:'@visitId'}}
      });
    }]);
