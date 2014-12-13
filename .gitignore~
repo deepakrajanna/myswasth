@@ -1,0 +1,13 @@
+helloworld.pyc
+.pydevproject
+httplib2/__init__.pyc
+httplib2/iri2uri.pyc
+httplib2/socks.pyc
+oauth2client/__init__.pyc
+oauth2client/anyjson.pyc
+oauth2client/appengine.pyc
+oauth2client/client.pyc
+oauth2client/clientsecrets.pyc
+oauth2client/crypt.pyc
+oauth2client/util.pyc
+oauth2client/xsrfutil.pyc
