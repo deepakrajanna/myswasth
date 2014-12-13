@@ -53,55 +53,67 @@ PATIENT_DETAILS="""\
 }
 """
 
+
 PATIENT_FAMILY_MEMBER_LIST="""\
             [
               { "id" : "1", "name": "Deepak" }
              ,{ "id" : "2", "name": "Manjari" }
              ,{ "id" : "3", "name": "Shekhar" }
              ,{ "id" : "4", "name": "Anant" }
-             ,{ "id" : "5", "name": "Shruti" }
              ]
 """
-VISITS_JSON = """\
-[
-    {
-        "id": "0", 
-        "date":"25/11/2014",
-        "chiefComplaint":"Cold",
-        "prescriptionImageUrl":"img/1.png",
-        "physicianName":"pn1"
-    },
-    {
+
+VISIT_1 ="""{
         "id": "1", 
-        "date":"25/07/2014",
-        "chiefComplaint":"Body Ache",
-        "prescriptionImageUrl":"img/2.png",
-        "physicianName":"pn2"
-    },
-    {
-        "id": "2", 
-        "date":"25/07/2014",
-        "chiefComplaint":"Cold",
-        "prescriptionImageUrl":"img/3.png",
-        "physicianName":"pn3"
-    },
-    {
-        "id": "3", 
-        "date":"25/08/2014",
-        "chiefComplaint":"Head Ache",
-        "prescriptionImageUrl":"",
-        "physicianName":"pn4"
-    }
-]
-"""
-VISIT_PATIENT_1 ="""{
-        "id": "3", 
         "date":"25/08/2014",
         "chiefComplaint":"Tooth Ache",
         "prescriptionImageUrl":"",
-        "physicianName":"pn4"
+        "physicianName":"Dr. Rajnikant"
     } """
-VISIT_DETAIL_JSON = {"1":VISIT_PATIENT_1 }
+    
+VISIT_2 ="""{
+        "id": "2", 
+        "date":"25/09/2013",
+        "chiefComplaint":"Head Ache",
+        "prescriptionImageUrl":"",
+        "physicianName":"Dr. Thalaiva"
+    } """
+    
+VISIT_3="""{
+        "id": "3", 
+        "date":"25/11/2014",
+        "chiefComplaint":"Cold",
+        "prescriptionImageUrl":"img/1.png",
+        "physicianName":"Dr. Basha"
+    }"""
+    
+VISIT_4="""{
+        "id": "4", 
+        "date":"05/01/2014",
+        "chiefComplaint":"Cough",
+        "prescriptionImageUrl":"img/1.png",
+        "physicianName":"Dr. Muthu"
+    }"""
+
+VISIT_5="""{
+        "id": "5", 
+        "date":"11/05/2014",
+        "chiefComplaint":"Body Ache",
+        "prescriptionImageUrl":"img/1.png",
+        "physicianName":"Dr. Enthiran"
+    }"""
+    
+VISIT_6="""{
+        "id": "6", 
+        "date":"11/05/2013",
+        "chiefComplaint":"Body Ache",
+        "prescriptionImageUrl":"img/1.png",
+        "physicianName":"Dr. Padaiyappan"
+    }"""
+    
+VISITS_LIST = {"1":VISIT_1,"2":VISIT_2,"3":VISIT_3,"4":VISIT_4,"5":VISIT_5,"6":VISIT_6}
+
+PATIENT_VISIT_DETAIL = {"1":[1,2,3], "2":[4,5], "3":[6] }
 
 
 decorator = appengine.oauth2decorator_from_clientsecrets(
@@ -132,11 +144,29 @@ class AboutHandler(webapp2.RequestHandler):
 class Visits(webapp2.RequestHandler):
     @decorator.oauth_required
     def get(self, patientid):
-        self.response.write(VISITS_JSON)
+        if (patientid in PATIENT_VISIT_DETAIL):
+            flag = False
+            jsonstr = ""
+            
+            for visitid in PATIENT_VISIT_DETAIL[patientid]:
+                if flag==True:
+                    jsonstr = jsonstr + ","
+                jsonstr = jsonstr + VISITS_LIST[str(visitid)]
+                flag = True
+            self.response.write("[" + jsonstr +"]")
+        else:
+            self.response.write("Error")
 
 class Visit(webapp2.RequestHandler):
     def get(self, patientid, visitid):
-        self.response.write(VISIT_DETAIL_JSON[str(visitid)])
+        if (patientid in PATIENT_VISIT_DETAIL):
+            if (int(visitid) in PATIENT_VISIT_DETAIL[patientid]):
+                self.response.write(VISITS_LIST[visitid])
+                return
+            else:
+              self.response.write("Error")
+        else:
+            self.response.write("Error")
 
 class Patient(webapp2.RequestHandler):
     def get(self):
