@@ -55,11 +55,11 @@ PATIENT_DETAILS="""\
 
 PATIENT_FAMILY_MEMBER_LIST="""\
             [
-              { id : "1", name: "Deepak" }
-             ,{ id : "2", name: "Manjari" }
-             ,{ id : "3", name: "Shekhar" }
-             ,{ id : "4", name: "Anant" }
-             ,{ id : "5", name: "Shruti" }
+              { "id" : "1", "name": "Deepak" }
+             ,{ "id" : "2", "name": "Manjari" }
+             ,{ "id" : "3", "name": "Shekhar" }
+             ,{ "id" : "4", "name": "Anant" }
+             ,{ "id" : "5", "name": "Shruti" }
              ]
 """
 VISITS_JSON = """\
