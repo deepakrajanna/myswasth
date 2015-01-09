@@ -14,8 +14,17 @@ visitControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', '$http
 	    $scope.visit = VisitData;
 	});
     */
-	
+	/*
     Visit.query({ patientId: patient_id, visitId: visit_id }, function(data) {
     	$scope.visit = data;
+    }, function(response) {
+    console.log(response);
+    });
+    */
+    Visit.query({ patientId: patient_id, visitId: visit_id },function(data) {
+    	console.log(data);
+    	$scope.visit = data;
+    }, function(error) {
+        console.log(error);
     });
 }]);

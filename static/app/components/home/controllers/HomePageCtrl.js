@@ -5,12 +5,12 @@ homeControllers.controller('HomePageCtrl', ['$scope', '$http','$rootScope','$mod
 	
 	getPatientId.query(function(data) {
     	$rootScope.selected = data;
-    	
     	AllPatientIds.query({ patientId: $rootScope.selected.id }, function(data) {
         	$rootScope.items = data;
         });
     });
-    
+	
+	
 	$rootScope.open = function (size) {
 
     var modalInstance = $modal.open({
