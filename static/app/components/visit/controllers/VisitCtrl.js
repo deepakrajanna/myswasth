@@ -5,9 +5,14 @@ visitControllers.controller('VisitCtrl', ['$scope', '$http','$rootScope','AllVis
     
     var patient_id = $rootScope.selected.id;
     
-    AllVisits.query({ patientId: patient_id }, function(data) {
+    AllVisits.get({ patientId: patient_id }, function(data) {
+    	console.log(data);
     	$scope.visits = data;
+    }, function(error) {
+        console.log(error);
     });
+    
+    
     
     $scope.orderProp = 'date';
     
