@@ -3,7 +3,11 @@ var homeApp = angular.module('homeApp', [
   'homeControllers',
   'ui.bootstrap',
   'angularFileUpload',
-  'homeServices'
+  'homeServices',
+  'historyApp',
+  'profileApp',
+  'testApp',
+  'visitApp'
 ]);
 
 var homeControllers = angular.module('homeControllers', []);
