@@ -6,10 +6,16 @@ import os
 from oauth2client import appengine
 from oauth2client import client
 
+from google.appengine.ext import db
+from google.appengine.api import images
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
 
 import jinja2
+import uuid
+
+class ImageStoreHelper(db.Model):
+    img = db.BlobProperty()
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -132,14 +138,14 @@ class AboutHandler(webapp2.RequestHandler):
   @decorator.oauth_required
   def get(self):
     try:
-      http = decorator.http()
-      user = service.people().get(userId='me').execute(http=http)
-      text = 'Hello, %s!' % user['displayName']
-
-      template = JINJA_ENVIRONMENT.get_template('welcome.html')
-      self.response.write(template.render({'text': text }))
+        http = decorator.http()
+        user = service.people().get(userId='me').execute(http=http)
+        text = 'Hello, %s!' % user['displayName']
+        
+        template = JINJA_ENVIRONMENT.get_template('welcome.html')
+        self.response.write(template.render({'text': text }))
     except client.AccessTokenRefreshError:
-      self.redirect('/')
+        self.redirect('/')
       
 class Visits(webapp2.RequestHandler):
     @decorator.oauth_required
@@ -176,33 +182,35 @@ class Family(webapp2.RequestHandler):
     def get(self, patient_id):
         self.response.write(PATIENT_FAMILY_MEMBER_LIST)
 
-class TestImageForm(webapp2.RequestHandler):
-  def get(self):
-    upload_url = blobstore.create_upload_url('/upload')
-    self.response.out.write('<html><body>')
-    self.response.out.write('<form action="%s" method="POST" enctype="multipart/form-data">' % upload_url)
-    self.response.out.write("""Upload File: <input type="file" name="file"><br> <input type="submit"
-        name="submit" value="Submit"> </form></body></html>""")
-
 class UploadHandler(webapp2.RequestHandler):
-  def post(self):
-    file = self.request.POST['file']                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-    self.response.out.write( "http://localhost:8080/images/something")
+    def post(self):
+        print "Called UploadHandler"
+        imgblock = ImageStoreHelper(parent=db.Key.from_path('Test','images'))
+        imgblock.img=db.Blob(images.resize(self.request.get('file'),640,640))
+        imgkey = imgblock.put()
+        urlgen="http://localhost:8080/img?img_id="+str(imgkey)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+        self.response.out.write(urlgen)
 
+    def get(self, uniqid):
+        
+        print "Get not supported"   
+
+
+class ImageHandler(webapp2.RequestHandler):
   def get(self):
-    print "Get not supported"   
-
-class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
-  def get(self, resource):
-    resource = str(urllib.unquote(resource))
-    blob_info = blobstore.BlobInfo.get(resource)
-    self.send_blob(blob_info)
+    imgblob = db.get(self.request.get('img_id'))
+    print self.request.get('img_id')
+    if imgblob.img:
+        self.response.headers['Content-Type']='image/png'
+        self.response.out.write(imgblob.img)
+    else:
+        self.response.out.write('No image')
+    
     
 application = webapp2.WSGIApplication([
     ('/', MainPage),
-    ('/testimage', TestImageForm),
     ('/upload', UploadHandler),
-    ('/images/([^/]+)?', ServeHandler),
+    ('/img', ImageHandler),
     ('/api/visits/(.*)', Visits),
     ('/api/visit/(.*)/(.*)',Visit),
     ('/api/get_patient_id',Patient),
