@@ -1,64 +1,65 @@
 <!doctype html>
 <html lang="en" ng-app="myswasthApp">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MySwasth</title>
-  <link rel="stylesheet" href="../assets/libs/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="../assets/css/app.css">
-  <link rel="stylesheet" href="../assets/libs/c3-0.4.4/c3.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MySwasth</title>
+<link rel="stylesheet" href="../assets/libs/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="../assets/css/app.css">
+<link rel="stylesheet" href="../assets/libs/c3-0.4.4/c3.css">
 
-  <script src="../assets/libs/es5-shim/es5-shim.min.js"></script>
-  <script src="../assets/libs/es5-shim/es5-sham.min.js"></script>
-  <script src="../assets/libs/jquery/jquery.min.js"></script>
-  <script src="../assets/js/console-sham.js"></script>
+<script src="../assets/libs/es5-shim/es5-shim.min.js"></script>
+<script src="../assets/libs/es5-shim/es5-sham.min.js"></script>
+<script src="../assets/libs/jquery/jquery.min.js"></script>
+<script src="../assets/js/console-sham.js"></script>
 
-  <script src="../assets/libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/libs/bootstrap/js/bootstrap.min.js"></script>
 
-  <script src="../assets/libs/angular-1.2.19/angular.js"></script>
-  <script src="../assets/libs/angular-1.2.19/angular-route.js"></script>
-  <script src="../assets/libs/angular-1.2.19/angular-resource.js"></script>
-  <script src="../assets/libs/angular-1.2.19/angular-animate.js"></script>
-  <script src="../assets/libs/angular-file-upload/angular-file-upload.js"></script>
-  <script src="../assets/libs/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-  <script src="../assets/js/d3.v3.js"></script>
-  <script src="../assets/libs/c3-0.4.4/c3.min.js"></script>
+<script src="../assets/libs/angular-1.2.19/angular.js"></script>
+<script src="../assets/libs/angular-1.2.19/angular-route.js"></script>
+<script src="../assets/libs/angular-1.2.19/angular-resource.js"></script>
+<script src="../assets/libs/angular-1.2.19/angular-animate.js"></script>
+<script src="../assets/libs/angular-file-upload/angular-file-upload.js"></script>
+<script src="../assets/libs/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="../assets/js/d3.v3.js"></script>
+<script src="../assets/libs/c3-0.4.4/c3.min.js"></script>
 </head>
-<body style="background-color:#f1f1f1;">
-  
-  <div ng-include src="'shared/header/header.html'"></div>
-  <div ng-view ></div>
-  
-  <script src="app.module.js"></script>
-  <script src="app.routes.js"></script>
-  <script src="app.controller.js"></script>
-  
-  <script src="components/home/home.js"></script>
-  <script src="components/home/controllers/HomePageCtrl.js"></script>
-  <script src="components/home/controllers/ModalInstanceCtrl.js"></script>
-  <script src="components/home/services/AllPatientIds.js"></script>
-  <script src="components/home/services/getPatientId.js"></script>
-  <script src="components/home/services/getHomeIcons.js"></script>
-  
-  <script src="components/visit/visit.js"></script>
-  <script src="components/visit/controllers/VisitCtrl.js"></script>
-  <script src="components/visit/controllers/VisitDetailCtrl.js"></script>
-  <script src="components/visit/controllers/VisitRecordCtrl.js"></script>
-  <script src="components/visit/services/AllVisits.js"></script>
-  <script src="components/visit/services/Visit.js"></script>
-  
-  <script src="components/test/test.js"></script>
-  <script src="components/test/controllers/TestCtrl.js"></script>
-  <script src="components/test/controllers/TestRecordCtrl.js"></script>
-  
-  <script src="components/history/history.js"></script>
-  <script src="components/history/controllers/HistoryCtrl.js"></script>
-  
-  <script src="components/profile/profile.js"></script>
-  <script src="components/profile/controllers/ProfileCtrl.js"></script>
-  
-  <script src="shared/directives/directives.js"></script>
-  
-  
+<body style="background-color: #f1f1f1;">
+
+	<div ng-include src="'shared/header/header.html'"></div>
+	<div ng-view></div>
+
+	<script src="app.module.js"></script>
+	<script src="app.routes.js"></script>
+	<script src="app.controller.js"></script>
+
+	<script src="components/home/home.js"></script>
+	<script src="components/home/controllers/HomePageCtrl.js"></script>
+	<script src="components/home/controllers/ModalInstanceCtrl.js"></script>
+	<script src="components/home/services/AllPatientIds.js"></script>
+	<script src="components/home/services/getPatientId.js"></script>
+	<script src="components/home/services/getHomeIcons.js"></script>
+
+	<script src="components/visit/visit.js"></script>
+	<script src="components/visit/controllers/VisitCtrl.js"></script>
+	<script src="components/visit/controllers/VisitDetailCtrl.js"></script>
+	<script src="components/visit/controllers/VisitRecordCtrl.js"></script>
+	<script src="components/visit/services/AllVisits.js"></script>
+	<script src="components/visit/services/Visit.js"></script>
+	<script src="components/visit/services/RecordVisit.js"></script>
+
+	<script src="components/test/test.js"></script>
+	<script src="components/test/controllers/TestCtrl.js"></script>
+	<script src="components/test/controllers/TestRecordCtrl.js"></script>
+
+	<script src="components/history/history.js"></script>
+	<script src="components/history/controllers/HistoryCtrl.js"></script>
+
+	<script src="components/profile/profile.js"></script>
+	<script src="components/profile/controllers/ProfileCtrl.js"></script>
+
+	<script src="shared/directives/directives.js"></script>
+
+
 </body>
 </html>
