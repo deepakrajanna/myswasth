@@ -11,8 +11,9 @@ visitControllers
 								RecordVisit) {
 
 							var patient_id = $rootScope.selected.id;
-							alert(patient_id);
-
+							
+							$scope.imagestatus = [];
+							
 							$scope.VisitRecordForm = {};
 							$scope.VisitRecordForm.vdate = "";
 							$scope.VisitRecordForm.name = "";
@@ -105,7 +106,9 @@ visitControllers
 							};
 							uploader.onCompleteItem = function(fileItem,
 									response, status, headers) {
-								alert(response);
+								console.log(response);
+								
+								$scope.imagestatus.push(response);
 								document.getElementById('ImageStatus').value = response;
 								console.info('onCompleteItem', fileItem,
 										response, status, headers);
@@ -118,15 +121,17 @@ visitControllers
 
 							$scope.VisitRecordForm.submitTheForm = function() {
 
-								var ImageStatus = document
-										.getElementById('ImageStatus').value;
+								//var ImageStatus = document.getElementById('ImageStatus').value;
 
 								console.log("--> Submitting form");
+								
+								console.log("Fuck"+$scope.imagestatus);
+								
 								var visit_data = {
 									date : $scope.VisitRecordForm.vdate,
 									name : $scope.VisitRecordForm.name,
 									chiefcomplaints : $scope.VisitRecordForm.selected,
-									url : ImageStatus
+									url : $scope.imagestatus
 								};
 
 								console.log(visit_data);
