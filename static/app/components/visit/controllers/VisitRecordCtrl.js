@@ -130,7 +130,7 @@ visitControllers
 
 								console.log(visit_data);
 
-								RecordVisit.query({
+								RecordVisit.save({
 									visitdata : visit_data
 								}, function(data) {
 									console.log(data);
