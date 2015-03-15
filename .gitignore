@@ -1,0 +1,7 @@
+/apiclient/__init__.pyc
+/apiclient/channel.pyc
+/apiclient/*.pyc
+/helloworld.pyc
+/httplib2/*.pyc
+/oauth2client/*.pyc
+/uritemplate/__init__.pyc
