@@ -123,9 +123,6 @@ visitControllers
 
 								//var ImageStatus = document.getElementById('ImageStatus').value;
 
-								console.log("--> Submitting form");
-								
-								console.log("Fuck"+$scope.imagestatus);
 								
 								var visit_data = {
 									date : $scope.VisitRecordForm.vdate,
@@ -138,6 +135,7 @@ visitControllers
 
 								RecordVisit.save({
 									visitdata : visit_data
+									
 								}, function(data) {
 									console.log(data);
 								}, function(error) {

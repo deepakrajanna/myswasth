@@ -1,7 +1,7 @@
 visitServices.factory('RecordVisit', [ '$resource', function($resource) {
-	return $resource('../../api/record_visit/:visitdata', {}, {
+	return $resource('../../addvisit/:visitdata', {}, {
 		save : {
-			method : 'POST',
+			method : 'POST'
 		}
 	});
 } ]);

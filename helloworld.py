@@ -187,7 +187,9 @@ class Patient(webapp2.RequestHandler):
 class Family(webapp2.RequestHandler):
     def get(self, patient_id):
         self.response.write(PATIENT_FAMILY_MEMBER_LIST)
-
+class AddVisit(webapp2.RequestHandler):
+    def post(self):
+        print  self.request.body
 class UploadHandler(webapp2.RequestHandler):
     def post(self):
         print "Called UploadHandler"
@@ -217,6 +219,7 @@ application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/upload', UploadHandler),
     ('/img', ImageHandler),
+    ('/addvisit',AddVisit),
     ('/api/visits/(.*)', Visits),
     ('/api/visit/(.*)/(.*)',Visit),
     ('/api/get_patient_id',Patient),
