@@ -1,4 +1,3 @@
-
 	
 visitControllers.controller('VisitCtrl', ['$scope', '$http','$rootScope','AllVisits',
   function ($scope, $http, $rootScope, AllVisits) {

@@ -38,8 +38,9 @@ visitControllers
 									'cc3', 'cc4', 'cc5', 'cc6', 'cc7', 'cc8',
 									'cc9' ];
 
+							
 							var uploader = $scope.uploader = new FileUploader({
-								url : 'http://localhost:8080/upload',
+								url : '../../upload',
 								formData : {
 									patient_id : patient_id
 								},
