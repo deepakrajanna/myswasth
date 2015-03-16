@@ -12,10 +12,11 @@
 #footer{
 	position: fixed;
     bottom: 0;
+    text-align:center;
 }
 
 #search-btn{
-	color:white;
+	color:blue;
 	font-size:35px;
 	padding:10px;
 }

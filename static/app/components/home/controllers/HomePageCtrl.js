@@ -6,9 +6,8 @@ homeControllers.controller('HomePageCtrl', [
 		'$log',
 		'AllPatientIds',
 		'getPatientId',
-		'getHomeIcons',
 		function($scope, $http, $rootScope, $modal, $log, AllPatientIds,
-				getPatientId, getHomeIcons) {
+				getPatientId) {
 
 			getPatientId.query(function(data) {
 				$rootScope.selected = data;
@@ -38,9 +37,5 @@ homeControllers.controller('HomePageCtrl', [
 					$log.info('Modal dismissed at: ' + new Date());
 				});
 			};
-
-			getHomeIcons.query(function(data) {
-				$scope.homeicons = data;
-			});
 
 		} ]);
