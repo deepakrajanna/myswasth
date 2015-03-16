@@ -56,7 +56,7 @@ MAIN_PAGE_HTML = """\
   </body>
 </html>
 """
-PATIENT_DETAILS="""\
+PATIENT_DETAILS = """\
 {
     "id":"1",
     "name":"Deepak"
@@ -64,16 +64,15 @@ PATIENT_DETAILS="""\
 """
 
 
-PATIENT_FAMILY_MEMBER_LIST="""\
+PATIENT_FAMILY_MEMBER_LIST = """\
             [
               { "id" : "1", "name": "Deepak" }
              ,{ "id" : "2", "name": "Manjari" }
              ,{ "id" : "3", "name": "Shekhar" }
-             ,{ "id" : "4", "name": "Anant" }
              ]
 """
 
-VISIT_1 ="""{
+VISIT_1 = """{
         "id": "1", 
         "date":"25/08/2014",
         "chiefComplaint":"Tooth Ache",
@@ -81,7 +80,7 @@ VISIT_1 ="""{
         "physicianName":"Dr. Rajnikant"
     } """
     
-VISIT_2 ="""{
+VISIT_2 = """{
         "id": "2", 
         "date":"25/09/2013",
         "chiefComplaint":"Head Ache",
@@ -89,7 +88,7 @@ VISIT_2 ="""{
         "physicianName":"Dr. Thalaiva"
     } """
     
-VISIT_3="""{
+VISIT_3 = """{
         "id": "3", 
         "date":"25/11/2014",
         "chiefComplaint":"Cold",
@@ -97,7 +96,7 @@ VISIT_3="""{
         "physicianName":"Dr. Basha"
     }"""
     
-VISIT_4="""{
+VISIT_4 = """{
         "id": "4", 
         "date":"05/01/2014",
         "chiefComplaint":"Cough",
@@ -105,7 +104,7 @@ VISIT_4="""{
         "physicianName":"Dr. Muthu"
     }"""
 
-VISIT_5="""{
+VISIT_5 = """{
         "id": "5", 
         "date":"11/05/2014",
         "chiefComplaint":"Body Ache",
@@ -113,7 +112,7 @@ VISIT_5="""{
         "physicianName":"Dr. Enthiran"
     }"""
     
-VISIT_6="""{
+VISIT_6 = """{
         "id": "6", 
         "date":"11/05/2013",
         "chiefComplaint":"Body Ache",
@@ -121,9 +120,148 @@ VISIT_6="""{
         "physicianName":"Dr. Padaiyappan"
     }"""
     
-VISITS_LIST = {"1":VISIT_1,"2":VISIT_2,"3":VISIT_3,"4":VISIT_4,"5":VISIT_5,"6":VISIT_6}
+COMMON_COMPLAINTS = """ {
+   "summary": {
+       "num_visits": "5",
+       "common_complaints": {
+           "complaint": [
+               "Cold",
+               "Body Ache",
+               "Tooth Ache"
+           ]
+       }
+   }
+}"""
 
-PATIENT_VISIT_DETAIL = {"1":[1,2,3], "2":[4,5], "3":[6] }
+APPLICABLE_CASES = """ [
+    {
+        "code": "diabetes",
+        "name": "Diabetes",
+        "chart_data": {
+            "x": [
+                "2013-01-01",
+                "2014-01-02",
+                "2013-01-03",
+                "2013-01-04",
+                "2013-01-05",
+                "2013-01-06",
+                "2013-01-07"
+            ],
+            "data1": [
+                220,
+                320,
+                0,
+                0,
+                280,
+                270,
+                250
+            ],
+            "data2": [
+                150,
+                240,
+                0,
+                0,
+                220,
+                250,
+                220
+            ],
+            "data3": [
+                150,
+                150,
+                150,
+                150,
+                150,
+                150,
+                150
+            ],
+            "data4": [
+                120,
+                120,
+                120,
+                120,
+                120,
+                120,
+                120
+            ]
+        }
+    },
+    {
+        "code": "bp",
+        "name": "Blood Pressure",
+        "chart_data": {
+            "x": [
+                "2013-01-01",
+                "2014-01-02",
+                "2013-01-03",
+                "2013-01-04",
+                "2013-01-05",
+                "2013-01-06",
+                "2013-01-07"
+            ],
+            "data1": [
+                220,
+                320,
+                0,
+                0,
+                280,
+                270,
+                250
+            ],
+            "data2": [
+                150,
+                240,
+                0,
+                0,
+                220,
+                250,
+                220
+            ],
+            "data3": [
+                50,
+                50,
+                50,
+                50,
+                50,
+                50,
+                50
+            ],
+            "data4": [
+                120,
+                120,
+                120,
+                120,
+                120,
+                120,
+                120
+            ]
+        }
+    }
+]"""
+
+RECOMMENDATIONS = """ 
+    {
+        "diabetes": {
+            "recommendations": {
+                "recommendation": [
+                    "Exercise regularly",
+                    "Reduce fats in your diet"
+                ]
+            }
+        },
+        "bp": {
+            "recommendations": {
+                "recommendation": [
+                    "Hangout more with friends",
+                    "More sex"
+                ]
+            }
+        }
+    }
+"""
+    
+VISITS_LIST = {"1":VISIT_1, "2":VISIT_2, "3":VISIT_3, "4":VISIT_4, "5":VISIT_5, "6":VISIT_6}
+
+PATIENT_VISIT_DETAIL = {"1":[1, 2, 3], "2":[4, 5], "3":[6] }
 
 
 decorator = appengine.oauth2decorator_from_clientsecrets(
@@ -159,13 +297,15 @@ class Visits(webapp2.RequestHandler):
             jsonstr = ""
             
             for visitid in PATIENT_VISIT_DETAIL[patientid]:
-                if flag==True:
+                if flag == True:
                     jsonstr = jsonstr + ","
                 jsonstr = jsonstr + VISITS_LIST[str(visitid)]
                 flag = True
-            self.response.write("[" + jsonstr +"]")
+            self.response.write("[" + jsonstr + "]")
         else:
             self.response.write("Error")
+            
+
 
 class Visit(webapp2.RequestHandler):
     def get(self, patientid, visitid):
@@ -193,10 +333,10 @@ class AddVisit(webapp2.RequestHandler):
 class UploadHandler(webapp2.RequestHandler):
     def post(self):
         print "Called UploadHandler"
-        imgblock = ImageStoreHelper(parent=db.Key.from_path('Test','images'))
-        imgblock.img=db.Blob(images.resize(self.request.get('file'),640,640))
+        imgblock = ImageStoreHelper(parent=db.Key.from_path('Test', 'images'))
+        imgblock.img = db.Blob(images.resize(self.request.get('file'), 640, 640))
         imgkey = imgblock.put()
-        urlgen=BASE_URL+"/img?img_id="+str(imgkey)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+        urlgen = BASE_URL + "/img?img_id=" + str(imgkey)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
         self.response.out.write(urlgen)
 
     def get(self, uniqid):
@@ -209,20 +349,45 @@ class ImageHandler(webapp2.RequestHandler):
     imgblob = db.get(self.request.get('img_id'))
     print self.request.get('img_id')
     if imgblob.img:
-        self.response.headers['Content-Type']='image/png'
+        self.response.headers['Content-Type'] = 'image/png'
         self.response.out.write(imgblob.img)
     else:
         self.response.out.write('No image')
-    
+  
+      
+class CommonComplaints(webapp2.RequestHandler):
+    def get(self, patientid):
+        if (patientid in PATIENT_VISIT_DETAIL):
+            self.response.write(COMMON_COMPLAINTS)
+        else:
+            self.response.write("Error")  
+   
+      
+class ApplicableCases(webapp2.RequestHandler):
+    def get(self, patientid):
+        if (patientid in PATIENT_VISIT_DETAIL):
+            self.response.write(APPLICABLE_CASES)
+        else:
+            self.response.write("Error")   
+            
+class Recommendations(webapp2.RequestHandler):
+    def get(self, patientid):
+        if (patientid in PATIENT_VISIT_DETAIL):
+            self.response.write(RECOMMENDATIONS)
+        else:
+            self.response.write("Error") 
     
 application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/upload', UploadHandler),
     ('/img', ImageHandler),
-    ('/addvisit',AddVisit),
+    ('/addvisit', AddVisit),
     ('/api/visits/(.*)', Visits),
-    ('/api/visit/(.*)/(.*)',Visit),
-    ('/api/get_patient_id',Patient),
-    ('/api/get_family_members/(.*)',Family),
+    ('/api/visit/(.*)/(.*)', Visit),
+    ('/api/get_patient_id', Patient),
+    ('/api/get_family_members/(.*)', Family),
+    ('/api/common_complaints/(.*)', CommonComplaints),
+    ('/api/available_cases/(.*)', ApplicableCases),
+    ('/api/get_recommendations/(.*)', Recommendations),
     (decorator.callback_path, decorator.callback_handler()),
 ], debug=True)
