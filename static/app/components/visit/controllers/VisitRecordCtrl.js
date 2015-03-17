@@ -72,6 +72,7 @@ visitControllers
 							};
 							uploader.onAfterAddingFile = function(fileItem) {
 								console.info('onAfterAddingFile', fileItem);
+								$scope.presc_img = "true";
 							};
 							uploader.onAfterAddingAll = function(addedFileItems) {
 								console
@@ -109,7 +110,6 @@ visitControllers
 								console.log(response);
 								
 								$scope.imagestatus.push(response);
-								document.getElementById('ImageStatus').value = response;
 								console.info('onCompleteItem', fileItem,
 										response, status, headers);
 							};
@@ -121,10 +121,7 @@ visitControllers
 
 							$scope.VisitRecordForm.submitTheForm = function() {
 
-								//var ImageStatus = document.getElementById('ImageStatus').value;
-
-								
-								var visit_data = {
+																var visit_data = {
 									date : $scope.VisitRecordForm.vdate,
 									name : $scope.VisitRecordForm.name,
 									chiefcomplaints : $scope.VisitRecordForm.selected,

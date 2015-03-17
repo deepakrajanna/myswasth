@@ -2,6 +2,8 @@ import cgi
 import webapp2
 import urllib
 import os
+import time
+
 
 from oauth2client import appengine
 from oauth2client import client
@@ -13,6 +15,7 @@ from google.appengine.ext.webapp import blobstore_handlers
 
 import jinja2
 import uuid
+from google.appengine.ext.ndb.tasklets import sleep
 
 BASE_URL = "http://myswasth.appspot.com"
 if os.environ['SERVER_SOFTWARE'].startswith('Development'):
@@ -183,6 +186,35 @@ APPLICABLE_CASES = """ [
                 120,
                 120
             ]
+        },
+        "chart_data_names":{
+            
+            "data1" : "Systolic",
+            "data2" : "Diastolic",
+            "data3" : "Target",
+            "data4" : "Target"
+                                    
+        },
+        "chart_data_types":{
+            "data3" : "line",
+            "data4" : "line"
+        },
+        "chart_data_colors":{
+            "pattern": [
+                "blue",
+                "green",
+                "blue",
+                "green"
+            ]
+        },
+        "chart_data_axis":{
+            "x": {
+                "type": "category",
+                "tick": {
+                    "rotate": 75,
+                    "multiline": false
+                }
+            }
         }
     },
     {
@@ -217,13 +249,13 @@ APPLICABLE_CASES = """ [
                 220
             ],
             "data3": [
-                50,
-                50,
-                50,
-                50,
-                50,
-                50,
-                50
+                150,
+                150,
+                150,
+                150,
+                150,
+                150,
+                150
             ],
             "data4": [
                 120,
@@ -234,6 +266,35 @@ APPLICABLE_CASES = """ [
                 120,
                 120
             ]
+        },
+        "chart_data_names":{
+            
+            "data1" : "Systolic",
+            "data2" : "Diastolic",
+            "data3" : "Target",
+            "data4" : "Target"
+                                    
+        },
+        "chart_data_types":{
+            "data3" : "line",
+            "data4" : "line"
+        },
+        "chart_data_colors":{
+            "pattern": [
+                "red",
+                "yellow",
+                "red",
+                "yellow"
+            ]
+        },
+        "chart_data_axis":{
+            "x": {
+                "type": "category",
+                "tick": {
+                    "rotate": 75,
+                    "multiline": false
+                }
+            }
         }
     }
 ]"""
@@ -365,6 +426,7 @@ class CommonComplaints(webapp2.RequestHandler):
       
 class ApplicableCases(webapp2.RequestHandler):
     def get(self, patientid):
+        time.sleep(3)
         if (patientid in PATIENT_VISIT_DETAIL):
             self.response.write(APPLICABLE_CASES)
         else:
