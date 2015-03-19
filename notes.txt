@@ -11,7 +11,7 @@ Done:
 
 -- form validations for record visit page
 
--- busy cursor
+-- busy cursor on history page. 
 
 -- test page - date and test name
 
