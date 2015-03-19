@@ -1,9 +1,10 @@
 To be done:
 
 
--- record test page, validation of range
 
 -- patient always coming back to deepak
+
+-- proper form validations for record test page
 
 Done:
 
@@ -19,3 +20,5 @@ Done:
 
 
 -- while submitting, key value pairs of test
+
+-- record test page, validation of range
