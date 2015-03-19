@@ -2,16 +2,17 @@
 <div ng-controller="VisitRecordCtrl">
 	<div style="padding: 20px;">
 		</br>
-		<form class="form-horizontal" role="form" name="visit_record_form" ng-submit="VisitRecordForm.submitTheForm()" novalidate>
-			<div class="form-group">
+		<form class="form-horizontal" role="form" name="visit_record_form" ng-submit="submitTheForm()" novalidate>
+			<div class="form-group" ng-class="{ 'has-error' : visit_record_form.vdate.$invalid && !visit_record_form.vdate.$invalid }">
 				</br> <label for="vdate" class="col-sm-4 col-xs-4 control-label">Date:</label>
 				<div class="col-sm-8 col-xs-8">
-					<input type="date" class="form-control" name="vdate" id="vdate"
+					<input type="date" class="form-control" name="vdate" 
 						ng-model="VisitRecordForm.vdate" required>
+					<p ng-show="visit_record_form.vdate.$invalid && !visit_record_form.vdate.$pristine" class="help-block">Date is required.</p>
 				</div>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group" ng-class="{ 'has-error' : visit_record_form.vcc.$invalid && !visit_record_form.vcc.$invalid }">
 				<label for="complaint" class="col-sm-4 col-xs-4 control-label">Chief
 					Complaint:</label>
 				<div class="col-sm-8 col-xs-8">
@@ -19,16 +20,18 @@
 						typeahead="state for state in VisitRecordForm.states | filter:$viewValue | limitTo:8"
 						class="form-control" 
 						placeholder="Please enter chief complaint" required>
+					<p ng-show="visit_record_form.vcc.$invalid && !visit_record_form.vcc.$pristine" class="help-block">Chief complaint is required.</p>
 				</div>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group" ng-class="{ 'has-error' : visit_record_form.vname.$invalid && !visit_record_form.vname.$invalid }">
 				<label for="name" class="col-sm-4 col-xs-4 control-label">Physician's
 					Name :</label>
 				<div class="col-sm-8 col-xs-8">
-					<input type="text" class="form-control" name="vname" id="vname"
+					<input type="text" class="form-control" name="vname"
 						ng-model="VisitRecordForm.name" 
 						placeholder="Please enter Physician's name" required>
+					<p ng-show="visit_record_form.vname.$invalid && !visit_record_form.vname.$pristine" class="help-block">Physician's name is required.</p>
 				</div>
 			</div>
 			<div class="form-group">
@@ -93,9 +96,9 @@
 				</div>
 			</div>
 			</br>
-
-			<input type="submit" ng-disabled="visit_record_form.vname.$dirty && visit_record_form.vname.$invalid"
-				class="btn-success btn form-control"/>
+			<button type="submit" class="btn btn-success form-control" ng-disabled="visit_record_form.$invalid">Submit</button>
+			<!-- input type="submit" ng-disabled="visit_record_form.vname.$dirty && visit_record_form.vname.$invalid"
+				class="btn-success btn form-control"/-->
 		</form>
 	</div>
 </div>

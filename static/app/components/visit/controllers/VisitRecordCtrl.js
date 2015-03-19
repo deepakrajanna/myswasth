@@ -119,25 +119,27 @@ visitControllers
 
 							console.info('uploader', uploader);
 
-							$scope.VisitRecordForm.submitTheForm = function() {
+							$scope.submitTheForm = function() {
+								
+								if ($scope.visit_record_form.$valid) {
+									var visit_data = {
+											date : $scope.VisitRecordForm.vdate,
+											name : $scope.VisitRecordForm.name,
+											chiefcomplaints : $scope.VisitRecordForm.selected,
+											url : $scope.imagestatus
+										};
 
-																var visit_data = {
-									date : $scope.VisitRecordForm.vdate,
-									name : $scope.VisitRecordForm.name,
-									chiefcomplaints : $scope.VisitRecordForm.selected,
-									url : $scope.imagestatus
-								};
+										console.log(visit_data);
 
-								console.log(visit_data);
-
-								RecordVisit.save({
-									visitdata : visit_data
-									
-								}, function(data) {
-									console.log(data);
-								}, function(error) {
-									console.log(error);
-								});
+										RecordVisit.save({
+											visitdata : visit_data
+											
+										}, function(data) {
+											console.log(data);
+										}, function(error) {
+											console.log(error);
+										});
+								}
 							}
 
 						} ]);

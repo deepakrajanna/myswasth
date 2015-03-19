@@ -7,9 +7,9 @@ historyControllers.controller('HistoryCtrl', [
 		'Recommendations',
 		function($scope, $http, $rootScope, CommonComplaints, AvailableCases,
 				Recommendations) {
-
+			
 			var patient_id = $rootScope.selected.id;
-
+			$scope.loading = true;
 			CommonComplaints.get({
 				patientId : patient_id,
 			}, function(data) {
@@ -19,9 +19,12 @@ historyControllers.controller('HistoryCtrl', [
 			});
 
 			$scope.cc = function() {
+				
+				
 				AvailableCases.query({
 					patientId : patient_id,
 				}, function(data) {
+					$scope.loading = false;
 					$scope.cases = data;
 				}, function(error) {
 					console.log(error);
@@ -41,7 +44,6 @@ historyControllers.controller('HistoryCtrl', [
 
 			}	
 			$scope.chart_Data = function(chart_key) {
-
 				for (i = 0; i < $scope.cases.length; i++) {
 
 						if ($scope.cases[i].code == chart_key) {

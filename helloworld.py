@@ -426,7 +426,7 @@ class CommonComplaints(webapp2.RequestHandler):
       
 class ApplicableCases(webapp2.RequestHandler):
     def get(self, patientid):
-        time.sleep(3)
+        time.sleep(2)
         if (patientid in PATIENT_VISIT_DETAIL):
             self.response.write(APPLICABLE_CASES)
         else:

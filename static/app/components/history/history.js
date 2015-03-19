@@ -3,8 +3,7 @@ var historyApp = angular.module('historyApp', [
   'historyControllers',
   'historyServices',
   'ui.bootstrap',
-  'angularFileUpload'
-]);
+  'angularFileUpload']);
 
 var historyControllers = angular.module('historyControllers', []);
 var historyServices = angular.module('historyServices', [ 'ngResource' ]);

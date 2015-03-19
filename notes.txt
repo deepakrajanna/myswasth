@@ -1,7 +1,6 @@
 To be done:
 
 -- form validations
--- busy cursro
 
 -- test page - date and test name
 
@@ -17,3 +16,6 @@ To be done:
 Done:
 
 -- priority -- change the chart calls to server
+
+
+-- busy cursor
