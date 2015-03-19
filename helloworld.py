@@ -123,6 +123,48 @@ VISIT_6 = """{
         "physicianName":"Dr. Padaiyappan"
     }"""
     
+TEST_1 = """{
+        "id": "1", 
+        "date":"25/08/2014",
+        "test_name":"BP",
+        "testImageUrl":"img/1.png"
+    } """
+    
+TEST_2 = """{
+        "id": "2", 
+        "date":"25/09/2013",
+        "test_name":"Lipid Profile",
+        "testImageUrl":"img/1.png"
+    } """
+    
+TEST_3 = """{
+        "id": "3", 
+        "date":"25/11/2014",
+        "test_name":"Kidney Failure",
+        "testImageUrl":"img/1.png"
+    }"""
+    
+TEST_4 = """{
+        "id": "4", 
+        "date":"05/01/2014",
+        "test_name":"Diabetes",
+        "testImageUrl":"img/1.png"
+    }"""
+
+TEST_5 = """{
+        "id": "5", 
+        "date":"11/05/2014",
+        "test_name":"Blood",
+        "testImageUrl":"img/1.png"
+    }"""
+    
+TEST_6 = """{
+        "id": "6", 
+        "date":"11/05/2013",
+        "test_name":"BP",
+        "testImageUrl":"img/1.png"
+    }"""
+    
 COMMON_COMPLAINTS = """ {
    "summary": {
        "num_visits": "5",
@@ -324,6 +366,9 @@ VISITS_LIST = {"1":VISIT_1, "2":VISIT_2, "3":VISIT_3, "4":VISIT_4, "5":VISIT_5, 
 
 PATIENT_VISIT_DETAIL = {"1":[1, 2, 3], "2":[4, 5], "3":[6] }
 
+PATIENT_TEST_DETAIL = {"1":[1, 2, 3], "2":[4, 5], "3":[6] }
+
+TESTS_LIST = {"1":TEST_1, "2":TEST_2, "3":TEST_3, "4":TEST_4, "5":TEST_5, "6":TEST_6}
 
 decorator = appengine.oauth2decorator_from_clientsecrets(
     CLIENT_SECRETS,
@@ -366,13 +411,40 @@ class Visits(webapp2.RequestHandler):
         else:
             self.response.write("Error")
             
-
+class Tests(webapp2.RequestHandler):
+    @decorator.oauth_required
+    def get(self, patientid):
+        if (patientid in PATIENT_TEST_DETAIL):
+            flag = False
+            jsonstr = ""
+            
+            for testid in PATIENT_TEST_DETAIL[patientid]:
+                if flag == True:
+                    jsonstr = jsonstr + ","
+                jsonstr = jsonstr + TESTS_LIST[str(testid)]
+                flag = True
+            self.response.write("[" + jsonstr + "]")
+        else:
+            self.response.write("Error")
 
 class Visit(webapp2.RequestHandler):
     def get(self, patientid, visitid):
         if (patientid in PATIENT_VISIT_DETAIL):
             if (int(visitid) in PATIENT_VISIT_DETAIL[patientid]):
                 self.response.write(VISITS_LIST[visitid])
+                return
+            else:
+              self.response.write("Error")
+        else:
+            self.response.write("Error")
+    def post(self):
+        print "Called Post"
+        
+class Test(webapp2.RequestHandler):
+    def get(self, patientid, testid):
+        if (patientid in PATIENT_TEST_DETAIL):
+            if (int(testid) in PATIENT_TEST_DETAIL[patientid]):
+                self.response.write(TESTS_LIST[testid])
                 return
             else:
               self.response.write("Error")
@@ -388,9 +460,15 @@ class Patient(webapp2.RequestHandler):
 class Family(webapp2.RequestHandler):
     def get(self, patient_id):
         self.response.write(PATIENT_FAMILY_MEMBER_LIST)
+        
 class AddVisit(webapp2.RequestHandler):
     def post(self):
         print  self.request.body
+
+class AddTest(webapp2.RequestHandler):
+    def post(self):
+        print  self.request.body        
+
 class UploadHandler(webapp2.RequestHandler):
     def post(self):
         print "Called UploadHandler"
@@ -444,8 +522,11 @@ application = webapp2.WSGIApplication([
     ('/upload', UploadHandler),
     ('/img', ImageHandler),
     ('/addvisit', AddVisit),
+    ('/addtest', AddTest),
     ('/api/visits/(.*)', Visits),
+    ('/api/tests/(.*)', Tests),
     ('/api/visit/(.*)/(.*)', Visit),
+    ('/api/test/(.*)/(.*)', Test),
     ('/api/get_patient_id', Patient),
     ('/api/get_family_members/(.*)', Family),
     ('/api/common_complaints/(.*)', CommonComplaints),

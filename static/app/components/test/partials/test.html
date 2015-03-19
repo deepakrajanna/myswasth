@@ -1,4 +1,42 @@
-This is going to be the test page.
+<div class="col-xs-12 col-sm-12">
+	</br>
+	<input ng-model="query" class="form-control" placeholder="Search">
+	</br>
+	
+	<ul class="list-group">
+	  <li class="list-group-item" >
+	    <div class="row">
+		  <div class="col-xs-12 col-sm-12">
+		  	<div class="col-xs-5 col-sm-5">
+				Date
+			</div>
+		    <div class="col-xs-5 col-sm-5">
+				Test Name
+			</div>
+		  </div>	
+		</div>
+	  </li>
+	  <li class="list-group-item" ng-repeat="test in tests | filter:query | orderBy:'-orderProp'">
+	    <a href="#/test/id/{{test.id}}">
+	    <div class="row">
+		  <div class="col-xs-12 col-sm-12">
+		  	<div class="col-xs-5 col-sm-5">
+				{{test.date}}
+			</div>
+		    <div class="col-xs-5 col-sm-5">
+				{{test.test_name}}
+			</div>
+			<div ng-if="test.testImageUrl">
+				<div class="col-xs-2 col-sm-2">
+					<span class="glyphicon glyphicon-paperclip"></span>
+				</div>
+			</div>
+		  </div>	
+		</div>
+	  	</a>
+	  </li>
+	</ul>
+</div>
 
 <!-- Footer Starts -->
   <div class="col-xs-12 col-sm-12" id="footer">

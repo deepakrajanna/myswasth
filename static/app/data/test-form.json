@@ -5,19 +5,23 @@
     "description": "Description of BP",
     "value": [
       {
-        "name": "Systolic",
+        "code": "systolic",
+    	"name": "Systolic",
         "type": "Integer",
         "validation": {
           "min": "50",
-          "max": "300"
+          "max": "300",
+          "normal":"200"
         }
       },
       {
-        "name": "Diastolic",
+        "code": "diastolic",
+    	"name": "Diastolic",
         "type": "Integer",
         "validation": {
           "min": "50",
-          "max": "300"
+          "max": "300",
+          "normal":"200"
         }
       }
     ]
@@ -28,30 +32,36 @@
     "description": "Description of Diabetes ",
     "value": [
       {
-        "name": "HbA1C",
+        "code": "hba1c",
+    	"name": "HbA1C",
         "type": "Integer",
         "unit": "%",
         "validation": {
           "min": "0",
-          "max": "100"
+          "max": "100",
+          "normal":"200"
         }
       },
       {
-        "name": "Fasting Sugar",
+        "code": "fasting_sugar",
+    	"name": "Fasting Sugar",
         "type": "Integer",
         "unit": "mg/dl",
         "validation": {
           "min": "10",
-          "max": "200"
+          "max": "200",
+          "normal":"200"
         }
       },
       {
-        "name": "Post-prandial Sugar",
+        "code": "post_prandial_sugar",
+    	"name": "Post-prandial Sugar",
         "type": "Integer",
         "unit": "mg/dl",
         "validation": {
           "min": "10",
-          "max": "200"
+          "max": "200",
+          "normal":"200"
         }
       }
     ]
@@ -62,39 +72,47 @@
     "description": "Discription of Lipid Profile ",
     "value": [
       {
-        "name": "LDL",
+        "code": "ldl",
+    	"name": "LDL",
         "type": "Integer",
         "unit": "%",
         "validation": {
           "min": "0",
-          "max": "100"
+          "max": "100",
+          "normal":"200"
         }
       },
       {
-        "name": "HDL",
+        "code": "hdl",
+    	"name": "HDL",
         "type": "Integer",
         "unit": "mg/dl",
         "validation": {
           "min": "10",
-          "max": "200"
+          "max": "200",
+          "normal":"200"
         }
       },
       {
-        "name": "Triglycerides",
+        "code": "triglycerides",
+    	"name": "Triglycerides",
         "type": "Integer",
         "unit": "mg/dl",
         "validation": {
           "min": "10",
-          "max": "200"
+          "max": "200",
+          "normal":"200"
         }
       },
       {
-        "name": "Total Cholesterol",
+        "code": "total_cholesterol",
+    	"name": "Total Cholesterol",
         "type": "Integer",
         "unit": "mg/dl",
         "validation": {
           "min": "10",
-          "max": "200"
+          "max": "200",
+          "normal":"200"
         }
       }
     ]
@@ -105,12 +123,14 @@
     "description": "Description of Anaemia",
     "value": [
 	    {
-	      "name": "Haemoglobin",
+	      "code": "haemoglobin",
+    	  "name": "Haemoglobin",
 	      "type": "Integer",
 	      "unit": "g/dl",
 	      "validation": {
 	        "min": "2",
-	        "max": "20"
+	        "max": "20",
+          "normal":"200"
 	      }
 	    }
       ]

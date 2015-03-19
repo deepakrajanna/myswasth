@@ -16,9 +16,6 @@ visitApp.config([ '$routeProvider', function($routeProvider) {
 	}).when('/visit/record', {
 		templateUrl : 'components/visit/partials/visit-record.html',
 		controller : 'VisitRecordCtrl'
-	}).when('/visit/record-test', {
-		templateUrl : 'components/visit/partials/visit-record-test.html',
-		controller : 'VisitRecordTestCtrl'
 	}).otherwise({
 		redirectTo : '/homepage'
 	});

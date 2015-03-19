@@ -5,9 +5,10 @@ visitControllers
 						'$scope',
 						'$http',
 						'$rootScope',
+						'$location',
 						'FileUploader',
 						'RecordVisit',
-						function($scope, $http, $rootScope, FileUploader,
+						function($scope, $http, $rootScope, $location, FileUploader,
 								RecordVisit) {
 
 							var patient_id = $rootScope.selected.id;
@@ -117,7 +118,7 @@ visitControllers
 								console.info('onCompleteAll');
 							};
 
-							console.info('uploader', uploader);
+							//console.info('uploader', uploader);
 
 							$scope.submitTheForm = function() {
 								
@@ -136,6 +137,7 @@ visitControllers
 											
 										}, function(data) {
 											console.log(data);
+											$location.path('/visit')
 										}, function(error) {
 											console.log(error);
 										});

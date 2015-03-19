@@ -1,41 +1,105 @@
-<div ng-controller="TestRecordCtrl" >
-	<div style="padding:20px;">
-    </br>
-    <form class="form-horizontal" role="form">
-        <div class="form-group">
-		    </br>
-        	<label for="test" class="col-sm-3 col-xs-3 control-label">
-        		Test:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        	</label>
-		    <div class="col-sm-7 col-xs-7">
-		      <select ng-model="test" ng-options="test.code as test.name for test in testForm2" class="form-control">
-			  </select>
-			</div>
-			<div class="col-sm-2 col-xs-2">
-				<a tooltip="{{testForm[test].description}}" tooltip-placement="top"><span  class="glyphicon glyphicon-question-sign" id="help-test-form"></span></a>
-		    </div>
-		</div>
-		<div ng-if="test">
-			<div class="form-group" ng-repeat="value in testForm[test].value">
-			    <label for="{{value.name}}" class="col-sm-3 col-xs-3 control-label">{{value.name}}:</label>
-			    <div class="col-sm-7 col-xs-7">
-			      <input type="text" ng-model="val" min="{{value.validation.min}}" max="{{value.validation.max}}" class="form-control" >
-				</div>
-				<div class="col-sm-2 col-xs-2" style="padding-left:0px;">
-					{{value.unit}}
-				</div>
-			</div>
-		</div>
-		
-		<div class="form-group">
-		    <label for="prescription" class="col-sm-3 col-xs-3 control-label">Tests:</label>
-		    <div class="col-sm-7 col-xs-7">
-		      <input type="file" accept="image/*" capture="camera" class="form-control" ng-model="TestRecordForm.prescription" ng-required name="prescription" id="prescription">
-		    </div>
-		</div>
+<div ng-controller="TestRecordCtrl">
+	<div style="padding: 20px;">
 		</br>
-        
-        <button ng-click="TestRecordForm.submitTheForm()" class="btn-success btn form-control">Submit Form</button>
-    </form>
-  </div>
+		<form class="form-horizontal" role="form" name="test_record_form" ng-submit="submitTheForm()" novalidate>
+			<div class="form-group">
+				</br> <label for="test" class="col-sm-3 col-xs-3 control-label">
+					Test:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+				<div class="col-sm-7 col-xs-7">
+					<select ng-model="test"
+						ng-options="test.code as test.name for test in testForm2"
+						class="form-control" ng-change="emptyModels()" required>
+					</select>
+				</div>
+				<div class="col-sm-2 col-xs-2">
+					<a tooltip="{{testForm[test].description}}" tooltip-placement="top"><span
+						class="glyphicon glyphicon-question-sign" id="help-test-form"></span></a>
+				</div>
+			</div>
+			<div ng-if="test">
+				<div ng-repeat="value in testForm[test].value">
+					<div class="form-group"
+						ng-class="{ 'has-error' : test_record_form.model.$invalid && !test_record_form.model.$pristine }">
+						<label for="{{value.name}}"
+							class="col-sm-3 col-xs-3 control-label">{{value.name}}:</label>
+						<div class="col-sm-7 col-xs-7" ng-init="models[value.code] = value.validation.normal">
+							<input type="text" name="model"
+								ng-model="models[value.code]" ng-min="{{value.validation.min}}" ng-max="{{value.validation.max}}" class="form-control" required>
+							<p ng-show="test_record_form.model.$invalid && !test_record_form.model.$pristine"
+								class="help-block">{{value.name}} value is required.</p>
+							<p ng-show="test_record_form.model.$invalid"
+								class="help-block">
+         						The value should be between {{value.validation.min}} and {{value.validation.max}}.
+    						</p>
+						</div>
+						<div class="col-sm-2 col-xs-2" style="padding-left: 0px;">
+							{{value.unit}}</div>
+					</div>
+				</div>
+
+			</div>
+			
+			<div class="form-group">
+				<label for="vdate" class="col-sm-4 col-xs-4 control-label">Report:</label>
+				<div class="fileUpload btn btn-primary">
+					<span>Upload images</span> <input type="file" class="upload"
+						capture="camera" nv-file-select="" uploader="uploader" multiple />
+				</div>
+			</div>
+			</br>
+			<div class="form-group" ng-if="presc_img">
+				<div class="col-sm-12 col-xs-12">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Image</th>
+								<!-- th ng-show="uploader.isHTML5">Size</th-->
+								<th ng-show="uploader.isHTML5">Progress</th>
+								<th>Status</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in uploader.queue">
+								<td>
+									<!--strong>{{ item.file.name }}</strong--> <!-- Image preview -->
+									<!--auto height--> <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+									<!--auto width-->
+									<div ng-show="uploader.isHTML5"
+										ng-thumb="{ file: item._file, height: 100 }"></div> <!--fixed width and height -->
+									<!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+								</td>
+								<!--td ng-show="uploader.isHTML5" nowrap>{{
+									item.file.size/1024/1024|number:2 }} MB</td-->
+								<td ng-show="uploader.isHTML5">
+									<div class="progress" style="margin-bottom: 0;">
+										<div class="progress-bar" role="progressbar"
+											ng-style="{ 'width': item.progress + '%' }"></div>
+									</div>
+								</td>
+								<td class="text-center"><span ng-show="item.isSuccess">
+										<i class="glyphicon glyphicon-ok"></i>
+								</span> <span ng-show="item.isCancel"> <i
+										class="glyphicon glyphicon-ban-circle"></i>
+								</span> <span ng-show="item.isError"> <i
+										class="glyphicon glyphicon-remove"></i>
+								</span> </br></td>
+								<td>
+									<button type="button" class="btn btn-danger btn-xs"
+										ng-click="item.remove()">
+										<span class="glyphicon glyphicon-trash"></span> Remove
+									</button>
+								</td>
+								<td nowrap></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			</br>
+
+			<button type="submit" class="btn btn-success form-control"
+				ng-disabled="test_record_form.$invalid">Submit</button>
+		</form>
+	</div>
 </div>

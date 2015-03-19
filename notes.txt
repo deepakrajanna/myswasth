@@ -1,13 +1,5 @@
 To be done:
 
--- form validations
-
--- test page - date and test name
-
-
--- while submitting, key value pairs of test
-
--- record test form
 
 -- record test page, validation of range
 
@@ -17,5 +9,13 @@ Done:
 
 -- priority -- change the chart calls to server
 
+-- form validations for record visit page
 
 -- busy cursor
+
+-- test page - date and test name
+
+-- record test form
+
+
+-- while submitting, key value pairs of test

@@ -1,11 +1,9 @@
-.has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline {
-    color: #a94442;
+.input-help {
+    display: none
 }
-.help-block {
-    color: red;
+/* Help should show when invalid */
+ .ng-invalid + .input-help {
     display: block;
-    margin-bottom: 10px;
-    margin-top: 5px;
 }
 
 #header{
