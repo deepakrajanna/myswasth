@@ -7,7 +7,7 @@
 					Test:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
 				<div class="col-sm-7 col-xs-7">
 					<select ng-model="test"
-						ng-options="test.code as test.name for test in testForm2"
+						ng-options="test.code as test.name for test in alltests"
 						class="form-control" ng-change="emptyModels()" required>
 					</select>
 				</div>
@@ -19,21 +19,21 @@
 			<div ng-if="test">
 				<div ng-repeat="value in testForm[test].value">
 					<div class="form-group"
-						ng-class="{ 'has-error' : test_record_form.model.$invalid && !test_record_form.model.$pristine }">
+						ng-class="{ 'has-error' : test_record_form.{{value.code}}.$invalid && !test_record_form.{{value.code}}.$pristine }" >
 						<label for="{{value.name}}"
-							class="col-sm-3 col-xs-3 control-label">{{value.name}}:</label>
-						<div class="col-sm-7 col-xs-7" ng-init="models[value.code] = value.validation.normal">
-							<input type="text" name="model"
-								ng-model="models[value.code]" ng-min="{{value.validation.min}}" ng-max="{{value.validation.max}}" class="form-control" required>
-							<p ng-show="test_record_form.model.$invalid && !test_record_form.model.$pristine"
-								class="help-block">{{value.name}} value is required.</p>
-							<p ng-show="test_record_form.model.$invalid"
-								class="help-block">
-         						The value should be between {{value.validation.min}} and {{value.validation.max}}.
-    						</p>
-						</div>
-						<div class="col-sm-2 col-xs-2" style="padding-left: 0px;">
-							{{value.unit}}</div>
+								class="col-sm-3 col-xs-3 control-label">{{value.name}}:</label>
+							<div class="col-sm-7 col-xs-7" >
+								<input type="number" dynamic-name="value.code"
+									ng-model="models[value.code]" ng-min="{{value.validation.min}}" ng-max="{{value.validation.max}}" class="form-control" required>
+								
+								<p ng-show="test_record_form.{{value.code}}.$invalid && !test_record_form.{{value.code}}.$pristine"
+									class="help-block">
+									Please enter {{value.name}} value between {{value.validation.min}} and {{value.validation.max}}
+								</p>
+							</div>
+							<div class="col-sm-2 col-xs-2" style="padding-left: 0px;">
+								{{value.unit}}</div>
+						
 					</div>
 				</div>
 

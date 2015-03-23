@@ -6,6 +6,8 @@ To be done:
 
 -- proper form validations for record test page
 
+-- profile page
+
 Done:
 
 -- priority -- change the chart calls to server

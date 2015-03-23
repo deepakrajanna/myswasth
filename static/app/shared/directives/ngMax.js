@@ -31,9 +31,10 @@ angular
                         return undefined;
                     } else {
                         ctrl.$setValidity('ngMax', true);
-                        return value;
+                       return value;
                     }
                 };
+                
 
                 ctrl.$parsers.push(maxValidator);
                 ctrl.$formatters.push(maxValidator);

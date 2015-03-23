@@ -8,23 +8,28 @@ testControllers
 						'$location',
 						'FileUploader',
 						'RecordTest',
+						'GetTests',
+						'GetTestForm',
 						function($scope, $http, $rootScope, $location,
-								FileUploader, RecordTest) {
+								FileUploader, RecordTest, GetTests, GetTestForm) {
 							
 							var patient_id = $rootScope.selected.id;
 							$scope.imagestatus = [];
 							$scope.models = {};
 							
-							$http.get('data/test-form.json').success(
-									function(data) {
-										$scope.testForm = data;
-										$scope.selectedOption = data[0];
-									});
+							GetTests.query(function(data) {
+						    	$scope.alltests = data;
+						    }, function(error) {
+						        console.log(error);
+						    });
+							
+							GetTestForm.query(function(data) {
+								$scope.testForm = data;
+								$scope.selectedOption = data[0];
+						    }, function(error) {
+						        console.log(error);
+						    });
 
-							$http.get('data/tests.json').success(
-									function(data) {
-										$scope.testForm2 = data;
-									});
 							$scope.getValues = function(id) {
 								return $scope.testForm[id];
 							}

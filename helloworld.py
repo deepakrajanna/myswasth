@@ -361,6 +361,170 @@ RECOMMENDATIONS = """
         }
     }
 """
+
+ALL_TESTS = """ 
+    [
+  {
+    "code": "bp",
+    "name": "BP"
+  },
+  {
+    "code": "diabetes",
+    "name": "Diabetes"
+  },
+  {
+    "code": "lipid_profile",
+    "name": "Lipid Profile"
+  },
+  {
+    "code": "anaemia",
+    "name": "Anaemia"
+  }
+]
+  
+"""
+
+ALL_TEST_FORMS = """ 
+   {
+  "bp":{
+    "code": "bp",
+    "name": "BP",
+    "description": "Description of BP",
+    "value": [
+      {
+        "code": "systolic",
+        "name": "Systolic",
+        "type": "Integer",
+        "validation": {
+          "min": "50",
+          "max": "300",
+          "normal":"200"
+        }
+      },
+      {
+        "code": "diastolic",
+        "name": "Diastolic",
+        "type": "Integer",
+        "validation": {
+          "min": "50",
+          "max": "300",
+          "normal":"200"
+        }
+      }
+    ]
+  },
+  "diabetes":{
+    "code": "diabetes",
+    "name": "Diabetes",
+    "description": "Description of Diabetes ",
+    "value": [
+      {
+        "code": "hba1c",
+        "name": "HbA1C",
+        "type": "Integer",
+        "unit": "%",
+        "validation": {
+          "min": "0",
+          "max": "100",
+          "normal":"200"
+        }
+      },
+      {
+        "code": "fasting_sugar",
+        "name": "Fasting Sugar",
+        "type": "Integer",
+        "unit": "mg/dl",
+        "validation": {
+          "min": "10",
+          "max": "200",
+          "normal":"200"
+        }
+      },
+      {
+        "code": "post_prandial_sugar",
+        "name": "Post-prandial Sugar",
+        "type": "Integer",
+        "unit": "mg/dl",
+        "validation": {
+          "min": "10",
+          "max": "200",
+          "normal":"200"
+        }
+      }
+    ]
+  },
+  "lipid_profile":{
+    "code": "lipid_profile",
+    "name": "Lipid Profile",
+    "description": "Discription of Lipid Profile ",
+    "value": [
+      {
+        "code": "ldl",
+        "name": "LDL",
+        "type": "Integer",
+        "unit": "%",
+        "validation": {
+          "min": "0",
+          "max": "100",
+          "normal":"200"
+        }
+      },
+      {
+        "code": "hdl",
+        "name": "HDL",
+        "type": "Integer",
+        "unit": "mg/dl",
+        "validation": {
+          "min": "10",
+          "max": "200",
+          "normal":"200"
+        }
+      },
+      {
+        "code": "triglycerides",
+        "name": "Triglycerides",
+        "type": "Integer",
+        "unit": "mg/dl",
+        "validation": {
+          "min": "10",
+          "max": "200",
+          "normal":"200"
+        }
+      },
+      {
+        "code": "total_cholesterol",
+        "name": "Total Cholesterol",
+        "type": "Integer",
+        "unit": "mg/dl",
+        "validation": {
+          "min": "10",
+          "max": "200",
+          "normal":"200"
+        }
+      }
+    ]
+  },
+  "anaemia":{
+    "code": "anaemia",
+    "name": "Anaemia",
+    "description": "Description of Anaemia",
+    "value": [
+        {
+          "code": "haemoglobin",
+          "name": "Haemoglobin",
+          "type": "Integer",
+          "unit": "g/dl",
+          "validation": {
+            "min": "2",
+            "max": "20",
+          "normal":"200"
+          }
+        }
+      ]
+  }
+}
+  
+"""
     
 VISITS_LIST = {"1":VISIT_1, "2":VISIT_2, "3":VISIT_3, "4":VISIT_4, "5":VISIT_5, "6":VISIT_6}
 
@@ -453,6 +617,14 @@ class Test(webapp2.RequestHandler):
     def post(self):
         print "Called Post"
         
+class AllTests(webapp2.RequestHandler):
+    def get(self):
+        self.response.write(ALL_TESTS)
+        
+class AllTestForms(webapp2.RequestHandler):
+    def get(self):
+        self.response.write(ALL_TEST_FORMS)
+        
 class Patient(webapp2.RequestHandler):
     def get(self):
         self.response.write(PATIENT_DETAILS)
@@ -527,6 +699,8 @@ application = webapp2.WSGIApplication([
     ('/api/tests/(.*)', Tests),
     ('/api/visit/(.*)/(.*)', Visit),
     ('/api/test/(.*)/(.*)', Test),
+    ('/api/alltests', AllTests),
+    ('/api/alltestforms', AllTestForms),
     ('/api/get_patient_id', Patient),
     ('/api/get_family_members/(.*)', Family),
     ('/api/common_complaints/(.*)', CommonComplaints),
