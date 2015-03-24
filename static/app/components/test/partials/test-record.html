@@ -1,6 +1,12 @@
-<div ng-controller="TestRecordCtrl">
+<div class="col-xs-12 col-sm-12" style="text-align:center;padding-top:0px;margin-top:0px;">
+	<img src="../assets/img/loading.gif" ng-show="loading" />
+</div>
+<div ng-show="loaded" class="col-xs-12 col-sm-12">
+	
 	<div style="padding: 20px;">
-		</br>
+		
+		<a href="#/test" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span></a></br>
+	
 		<form class="form-horizontal" role="form" name="test_record_form" ng-submit="submitTheForm()" novalidate>
 			<div class="form-group">
 				</br> <label for="test" class="col-sm-3 col-xs-3 control-label">

@@ -1,7 +1,7 @@
 
-<div ng-controller="VisitRecordCtrl">
+<div class="col-xs-12 col-sm-12">
 	<div style="padding: 20px;">
-		</br>
+		<a href="#/test" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span></a></br>
 		<form class="form-horizontal" role="form" name="visit_record_form" ng-submit="submitTheForm()" novalidate>
 			<div class="form-group" ng-class="{ 'has-error' : visit_record_form.vdate.$invalid && !visit_record_form.vdate.$pristine }">
 				</br> <label for="vdate" class="col-sm-4 col-xs-4 control-label">Date:</label>

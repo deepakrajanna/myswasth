@@ -16,8 +16,11 @@ testControllers
 							var patient_id = $rootScope.selected.id;
 							$scope.imagestatus = [];
 							$scope.models = {};
-							
+							$scope.loading = true;
+							$scope.loaded = false;
 							GetTests.query(function(data) {
+								$scope.loading = false;
+								$scope.loaded = true;
 						    	$scope.alltests = data;
 						    }, function(error) {
 						        console.log(error);

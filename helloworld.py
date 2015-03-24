@@ -562,6 +562,7 @@ class AboutHandler(webapp2.RequestHandler):
 class Visits(webapp2.RequestHandler):
     @decorator.oauth_required
     def get(self, patientid):
+        time.sleep(0.5)
         if (patientid in PATIENT_VISIT_DETAIL):
             flag = False
             jsonstr = ""
@@ -578,6 +579,7 @@ class Visits(webapp2.RequestHandler):
 class Tests(webapp2.RequestHandler):
     @decorator.oauth_required
     def get(self, patientid):
+        time.sleep(0.5)
         if (patientid in PATIENT_TEST_DETAIL):
             flag = False
             jsonstr = ""
@@ -593,6 +595,7 @@ class Tests(webapp2.RequestHandler):
 
 class Visit(webapp2.RequestHandler):
     def get(self, patientid, visitid):
+        time.sleep(0.5)
         if (patientid in PATIENT_VISIT_DETAIL):
             if (int(visitid) in PATIENT_VISIT_DETAIL[patientid]):
                 self.response.write(VISITS_LIST[visitid])
@@ -606,6 +609,7 @@ class Visit(webapp2.RequestHandler):
         
 class Test(webapp2.RequestHandler):
     def get(self, patientid, testid):
+        time.sleep(0.5)
         if (patientid in PATIENT_TEST_DETAIL):
             if (int(testid) in PATIENT_TEST_DETAIL[patientid]):
                 self.response.write(TESTS_LIST[testid])
@@ -619,14 +623,17 @@ class Test(webapp2.RequestHandler):
         
 class AllTests(webapp2.RequestHandler):
     def get(self):
+        time.sleep(0.5)
         self.response.write(ALL_TESTS)
         
 class AllTestForms(webapp2.RequestHandler):
     def get(self):
+        time.sleep(0.5)
         self.response.write(ALL_TEST_FORMS)
         
 class Patient(webapp2.RequestHandler):
     def get(self):
+        time.sleep(0.5)
         self.response.write(PATIENT_DETAILS)
 
 class Family(webapp2.RequestHandler):
@@ -668,6 +675,7 @@ class ImageHandler(webapp2.RequestHandler):
       
 class CommonComplaints(webapp2.RequestHandler):
     def get(self, patientid):
+        time.sleep(0.5)
         if (patientid in PATIENT_VISIT_DETAIL):
             self.response.write(COMMON_COMPLAINTS)
         else:
@@ -676,7 +684,7 @@ class CommonComplaints(webapp2.RequestHandler):
       
 class ApplicableCases(webapp2.RequestHandler):
     def get(self, patientid):
-        time.sleep(2)
+        time.sleep(0.5)
         if (patientid in PATIENT_VISIT_DETAIL):
             self.response.write(APPLICABLE_CASES)
         else:
@@ -684,6 +692,7 @@ class ApplicableCases(webapp2.RequestHandler):
             
 class Recommendations(webapp2.RequestHandler):
     def get(self, patientid):
+        time.sleep(0.5)
         if (patientid in PATIENT_VISIT_DETAIL):
             self.response.write(RECOMMENDATIONS)
         else:

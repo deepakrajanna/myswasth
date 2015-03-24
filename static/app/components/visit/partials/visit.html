@@ -1,4 +1,7 @@
-<div class="col-xs-12 col-sm-12">
+<div class="col-xs-12 col-sm-12" style="text-align:center;padding-top:0px;margin-top:0px;">
+	<img src="../assets/img/loading.gif" ng-show="loading" />
+</div>
+<div ng-show="loaded" class="col-xs-12 col-sm-12">
 	</br>
 	<input ng-model="query" class="form-control" placeholder="Search">
 	</br>
@@ -36,10 +39,6 @@
 	  	</a>
 	  </li>
 	</ul>
+	<a href="#/visit/record" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add Visit</a>
 </div>
 
-<!-- Footer Starts -->
-  <div class="col-xs-12 col-sm-12" id="footer">
-	<a href="#/visit/record"><span class="glyphicon glyphicon-plus" id="search-btn">Add</span></a>
-  </div> 
-<!-- Footer Ends -->

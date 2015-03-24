@@ -16,7 +16,10 @@
     </div>
 </script>
 <!-- Page Starts -->
-<div class="col-xs-12 col-sm-12" id="homepage-icons">
+<div class="col-xs-12 col-sm-12" style="text-align:center;padding-top:0px;margin-top:0px;">
+	<img src="../assets/img/loading.gif" ng-show="loading" />
+</div>
+<div ng-show="loaded" class="col-xs-12 col-sm-12" id="homepage-icons">
   </br>
   <div class="row">
     <div class="col-xs-12 col-sm-12">
@@ -42,7 +45,7 @@
   </br>
   <div class="row">
     
-	<div ng-show="selected"><h4>Patient Name: {{ selected.name }}</h2></div>
+	<div><h4>Patient Name: {{ selected.name }}</h2></div>
     <button class="btn btn-default" ng-click="open()">Change Patient</button>
     
 </div>
