@@ -24,7 +24,7 @@
 								class="col-sm-3 col-xs-3 control-label">{{value.name}}:</label>
 							<div class="col-sm-7 col-xs-7" >
 								<input type="number" dynamic-name="value.code"
-									ng-model="models[value.code]" ng-min="{{value.validation.min}}" ng-max="{{value.validation.max}}" class="form-control" required>
+									ng-model="models[value.code]" min="{{value.validation.min}}" max="{{value.validation.max}}" class="form-control" required>
 								
 								<p ng-show="test_record_form.{{value.code}}.$invalid && !test_record_form.{{value.code}}.$pristine"
 									class="help-block">

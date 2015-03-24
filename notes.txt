@@ -4,7 +4,7 @@ To be done:
 
 -- patient always coming back to deepak
 
--- proper form validations for record test page
+
 
 -- profile page
 
@@ -20,7 +20,8 @@ Done:
 
 -- record test form
 
-
 -- while submitting, key value pairs of test
 
 -- record test page, validation of range
+
+-- proper form validations for record test page
