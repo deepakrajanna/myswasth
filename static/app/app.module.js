@@ -11,5 +11,6 @@ var myswasthApp = angular.module('myswasthApp', [
   'homeApp',
   'profileApp',
   'testApp',
-  'visitApp'
+  'visitApp',
+  'ngStorage'
 ]);

@@ -1,7 +1,12 @@
 
-profileControllers.controller('ProfileCtrl', ['$scope', '$http',
-  function ($scope, $http) {
-    $http.get('data/homeicons.json').success(function(data) {
-      $scope.homeicons = data;
-    });
+profileControllers.controller('ProfileCtrl', ['$scope', '$http', '$rootScope','$localStorage',
+  function ($scope, $http, $rootScope, $localStorage) {
+	if($rootScope.selected!=null){
+		var patient_id = $rootScope.selected.id;
+		$localStorage.current_patient_id = $rootScope.selected.id;
+		$localStorage.current_patient_name = $rootScope.selected.name;
+	}
+	else if($rootScope.selected==null){
+		var patient_id = $localStorage.current_patient_id;
+	}
 }]);

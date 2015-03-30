@@ -1,5 +1,4 @@
-var visitApp = angular.module('visitApp', [ 'ngRoute', 'visitControllers',
-		'ui.bootstrap', 'angularFileUpload', 'visitServices' ]);
+var visitApp = angular.module('visitApp', [ 'visitControllers', 'visitServices' ]);
 
 var visitControllers = angular.module('visitControllers', []);
 var visitServices = angular.module('visitServices', [ 'ngResource' ]);

@@ -1,8 +1,15 @@
 	
-visitControllers.controller('VisitCtrl', ['$scope', '$http','$rootScope','AllVisits',
-  function ($scope, $http, $rootScope, AllVisits) {
+visitControllers.controller('VisitCtrl', ['$scope', '$http','$rootScope','AllVisits','$localStorage',
+  function ($scope, $http, $rootScope, AllVisits, $localStorage) {
     
-    var patient_id = $rootScope.selected.id;
+	if($rootScope.selected!=null){
+		var patient_id = $rootScope.selected.id;
+		$localStorage.current_patient_id = $rootScope.selected.id;
+		$localStorage.current_patient_name = $rootScope.selected.name;
+	}
+	else if($rootScope.selected==null){
+		var patient_id = $localStorage.current_patient_id;
+	}
     $scope.loading = true;
 	$scope.loaded = false;
     AllVisits.query({ patientId: patient_id }, function(data) {

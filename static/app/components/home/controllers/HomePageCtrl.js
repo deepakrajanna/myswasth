@@ -6,12 +6,29 @@ homeControllers.controller('HomePageCtrl', [
 		'$log',
 		'AllPatientIds',
 		'getPatientId',
+		'$localStorage',
 		function($scope, $http, $rootScope, $modal, $log, AllPatientIds,
-				getPatientId) {
+				getPatientId, $localStorage) {
 			$scope.loading = true;
 			$scope.loaded = false;
-			getPatientId.query(function(data) {
-				$rootScope.selected = data;
+			
+			localStorage.clear();
+			
+			if($localStorage.current_patient_id==null){
+				getPatientId.query(function(data) {
+					$rootScope.selected = data;
+					AllPatientIds.query({
+						patientId : $rootScope.selected.id
+					}, function(data) {
+						$scope.loading = false;
+						$scope.loaded = true;
+						$rootScope.items = data;
+					});
+				});
+			}
+			else if($localStorage.current_patient_id!=null){
+				console.log("The code for local storage goes here");
+				$rootScope.selected = {id: $localStorage.current_patient_id, name: $localStorage.current_patient_name};
 				AllPatientIds.query({
 					patientId : $rootScope.selected.id
 				}, function(data) {
@@ -19,7 +36,8 @@ homeControllers.controller('HomePageCtrl', [
 					$scope.loaded = true;
 					$rootScope.items = data;
 				});
-			});
+			}
+			
 
 			$rootScope.open = function(size) {
 

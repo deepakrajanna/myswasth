@@ -1,13 +1,6 @@
 var homeApp = angular.module('homeApp', [
-  'ngRoute',
   'homeControllers',
-  'ui.bootstrap',
-  'angularFileUpload',
-  'homeServices',
-  'historyApp',
-  'profileApp',
-  'testApp',
-  'visitApp'
+  'homeServices'
 ]);
 
 var homeControllers = angular.module('homeControllers', []);

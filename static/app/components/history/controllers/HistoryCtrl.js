@@ -5,10 +5,19 @@ historyControllers.controller('HistoryCtrl', [
 		'CommonComplaints',
 		'AvailableCases',
 		'Recommendations',
+		'$localStorage',
 		function($scope, $http, $rootScope, CommonComplaints, AvailableCases,
-				Recommendations) {
+				Recommendations, $localStorage) {
 			
-			var patient_id = $rootScope.selected.id;
+			if($rootScope.selected!=null){
+				var patient_id = $rootScope.selected.id;
+				$localStorage.current_patient_id = $rootScope.selected.id;
+				$localStorage.current_patient_name = $rootScope.selected.name;
+			}
+			else if($rootScope.selected==null){
+				var patient_id = $localStorage.current_patient_id;
+			}
+			
 			$scope.loading = true;
 			CommonComplaints.get({
 				patientId : patient_id,

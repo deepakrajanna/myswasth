@@ -1,10 +1,17 @@
 visitControllers.controller('VisitDetailCtrl', [ '$scope', '$routeParams',
-		'$http', 'Visit', '$rootScope',
-		function($scope, $routeParams, $http, Visit, $rootScope) {
+		'$http', 'Visit', '$rootScope','$localStorage',
+		function($scope, $routeParams, $http, Visit, $rootScope, $localStorage) {
 
 			var visit_id = $routeParams.visitId;
 
-			var patient_id = $rootScope.selected.id;
+			if($rootScope.selected!=null){
+				var patient_id = $rootScope.selected.id;
+				$localStorage.current_patient_id = $rootScope.selected.id;
+				$localStorage.current_patient_name = $rootScope.selected.name;
+			}
+			else if($rootScope.selected==null){
+				var patient_id = $localStorage.current_patient_id;
+			}
 			$scope.loading = true;
 			$scope.loaded = false;
 

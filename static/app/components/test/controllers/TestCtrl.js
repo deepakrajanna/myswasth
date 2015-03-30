@@ -1,11 +1,19 @@
-testControllers.controller('TestCtrl', ['$scope', '$http','$rootScope','AllTests',
-  function ($scope, $http,  $rootScope, AllTests) {
+testControllers.controller('TestCtrl', ['$scope', '$http','$rootScope','AllTests','$localStorage',
+  function ($scope, $http,  $rootScope, AllTests, $localStorage) {
 	
 	$scope.loading = true;
 	$scope.loaded = false;
 	
-	var patient_id = $rootScope.selected.id;
-    AllTests.query({ patientId: patient_id }, function(data) {
+	if($rootScope.selected!=null){
+		var patient_id = $rootScope.selected.id;
+		$localStorage.current_patient_id = $rootScope.selected.id;
+		$localStorage.current_patient_name = $rootScope.selected.name;
+	}
+	else if($rootScope.selected==null){
+		var patient_id = $localStorage.current_patient_id;
+	}
+	
+	AllTests.query({ patientId: patient_id }, function(data) {
     	$scope.loading = false;
 		$scope.loaded = true;
     	$scope.tests = data;

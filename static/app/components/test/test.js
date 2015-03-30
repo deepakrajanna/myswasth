@@ -1,5 +1,4 @@
-var testApp = angular.module('testApp', [ 'ngRoute', 'testControllers',
-		'ui.bootstrap', 'angularFileUpload', 'testServices' ]);
+var testApp = angular.module('testApp', [ 'testControllers', 'testServices' ]);
 
 var testControllers = angular.module('testControllers', []);
 

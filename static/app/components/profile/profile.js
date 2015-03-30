@@ -1,8 +1,5 @@
 var profileApp = angular.module('profileApp', [
-  'ngRoute',
   'profileControllers',
-  'ui.bootstrap',
-  'angularFileUpload'
 ]);
 
 var profileControllers = angular.module('profileControllers', []);
