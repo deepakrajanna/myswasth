@@ -8,7 +8,7 @@ testApp.config([ '$routeProvider', function($routeProvider) {
 	$routeProvider.when('/test', {
 		templateUrl : 'components/test/partials/test.html',
 		controller : 'TestCtrl'
-	}).when('/test/id/:testId', {
+	}).when('/test/id/:visit_id', {
 		templateUrl : 'components/test/partials/test-detail.html',
 		controller : 'TestDetailCtrl'
 	}).when('/test/record', {

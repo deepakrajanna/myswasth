@@ -10,28 +10,28 @@ historyControllers.controller('HistoryCtrl', [
 				Recommendations, $localStorage) {
 			
 			if($rootScope.selected!=null){
-				var patient_id = $rootScope.selected.id;
+				var person_id = $rootScope.selected.id;
 				$localStorage.current_patient_id = $rootScope.selected.id;
 				$localStorage.current_patient_name = $rootScope.selected.name;
 			}
 			else if($rootScope.selected==null){
-				var patient_id = $localStorage.current_patient_id;
+				var person_id = $localStorage.current_patient_id;
 			}
 			
 			$scope.loading = true;
 			CommonComplaints.get({
-				patientId : patient_id,
+				person_id : person_id,
 			}, function(data) {
+				console.log(data.summary);
 				$scope.summary = data.summary;
 			}, function(error) {
 				console.log(error);
 			});
-
+	
 			$scope.cc = function() {
 				
-				
 				AvailableCases.query({
-					patientId : patient_id,
+					person_id : person_id,
 				}, function(data) {
 					$scope.loading = false;
 					$scope.cases = data;
@@ -41,17 +41,17 @@ historyControllers.controller('HistoryCtrl', [
 
 			}
 
-			$scope.recommendations = function() {
+			/*$scope.recommendations = function() {
 
 				Recommendations.query({
-					patientId : patient_id,
+					person_id : person_id,
 				}, function(data) {
 					$scope.rec = data;
 				}, function(error) {
 					console.log(error);
 				});
 
-			}	
+			}*/	
 			$scope.chart_Data = function(chart_key) {
 				for (i = 0; i < $scope.cases.length; i++) {
 

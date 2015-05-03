@@ -17,8 +17,9 @@ homeControllers.controller('HomePageCtrl', [
 			if($localStorage.current_patient_id==null){
 				getPatientId.query(function(data) {
 					$rootScope.selected = data;
+					console.log(data.id);
 					AllPatientIds.query({
-						patientId : $rootScope.selected.id
+						person_id : $rootScope.selected.id
 					}, function(data) {
 						$scope.loading = false;
 						$scope.loaded = true;
@@ -30,7 +31,7 @@ homeControllers.controller('HomePageCtrl', [
 				console.log("The code for local storage goes here");
 				$rootScope.selected = {id: $localStorage.current_patient_id, name: $localStorage.current_patient_name};
 				AllPatientIds.query({
-					patientId : $rootScope.selected.id
+					person_id : $rootScope.selected.id
 				}, function(data) {
 					$scope.loading = false;
 					$scope.loaded = true;

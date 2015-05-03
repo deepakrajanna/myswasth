@@ -5,15 +5,15 @@ testControllers.controller('TestCtrl', ['$scope', '$http','$rootScope','AllTests
 	$scope.loaded = false;
 	
 	if($rootScope.selected!=null){
-		var patient_id = $rootScope.selected.id;
+		var person_id = $rootScope.selected.id;
 		$localStorage.current_patient_id = $rootScope.selected.id;
 		$localStorage.current_patient_name = $rootScope.selected.name;
 	}
 	else if($rootScope.selected==null){
-		var patient_id = $localStorage.current_patient_id;
+		var person_id = $localStorage.current_patient_id;
 	}
 	
-	AllTests.query({ patientId: patient_id }, function(data) {
+	AllTests.query({ person_id: person_id }, function(data) {
     	$scope.loading = false;
 		$scope.loaded = true;
     	$scope.tests = data;
